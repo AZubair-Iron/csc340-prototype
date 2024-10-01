@@ -69,18 +69,49 @@
             border-radius: 4px;
         }
 
-        .submit-button {
-            padding: 10px 15px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .become-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: right;
         }
 
-        .submit-button:hover {
-            background-color: #4cae4c;
+        .schedule-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
         }
+
+        .coach-button {
+            background-color: #000;
+            border: none;
+            border-radius: 8px;
+            width: 125px;
+            height: 50px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .coach-button:hover {
+            transform: scale(1.05);
+        }
+
+        .coach-button span {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+
     </style>
 </head>
 <body>
@@ -91,19 +122,20 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="discussion_hub.html">Discussion</a></li>
             <li><a href="coach_hub.html">Coaches</a></li>
-            <li><a href="teams.html">Our Teams</a></li>
+            <li><a href="teams.html">Teams</a></li>
         </ul>
     </nav>
 
     <!-- Coach Section -->
     <div class="coach-section">
         <h2>Coaches</h2>
-
-        <!-- Coach 1 -->
+        <div class="become-section">
+            <button class="coach-button" onclick="location.href='coach/become_coach.html'">Become a Coach</button>
+        </div>
         <div class="coach">
             <h3>Arsal Zubair</h3>
-			
-            <div class="rating">⭐⭐⭐⭐☆</div> 
+
+            <div class="rating">⭐⭐⭐⭐☆</div>
 			<div class="game"> Game: Valorant </div>
 			<div class="about"> Hello, my name is Arsal and I am a Coach for Valorant. A little about me, I have peaked Immortal 2, almost 2 years of experience in Competitive Play. If you would like to contact me please use my email, akzubair@uncg.edu . Thank you and it will be a pleasure coaching you! </div>
 			<div class="comment-section">
@@ -120,6 +152,11 @@
                     <div class="comment-meta">by Bob</div>
                 </div>
             </div>
+            <h4> Looking for a meeting? </h4>
+            <div class="schedule-section">
+                <button class="coach-button">Schedule</button>
+                <button class="coach-button">Contact Coach</button>
+            </div>
 		</div>
 			
 		
@@ -130,7 +167,6 @@
         </div>
 	-->
 
-        <!-- Add more coaches as needed -->
     </div>
 
 </body>

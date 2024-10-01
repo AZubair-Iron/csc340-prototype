@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Hub</title>
+    <link rel="stylesheet" href="../global.css">
+</head>
+<style>
+    .comment-input {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+    .submit-button {
+            background-color: #000;
+            border: none;
+            border-radius: 8px;
+            width: 75px;
+            height: 50px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: scale(1.05);
+        }
+
+        .submit-button span {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+</style>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <ul id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../discussion_hub.html">Discussion</a></li>
+        <li><a href="../coach_hub.html">Coaches</a></li>
+        <li><a href="../teams.html">Teams</a></li>
+    </ul>
+</nav>
+
+<!--
+Application Forum:
+
+Need
+    Username
+    Real Name
+    Email
+    Game
+    Ranked in game
+-->
+
+<h1> Coach Application Forum </h1>
+
+<h4> Enter your Username </h4>
+<input type="text" class="comment-input" placeholder="Username">
+
+<h4> Enter your name</h4>
+<input type="text" class="comment-input" placeholder="FIRST NAME LAST NAME">
+
+<h4> Email </h4>
+<input type="email" class="comment-input" placeholder="EMAIL">
+
+<h4> What game are you looking to coach for? </h4>
+<input type="checkbox" class="comment-input" name="Valorant" value="yes" > Valorant
+<br>
+<input type="checkbox" class="comment-input" name="Overwatch" value="yes" > Overwatch
+<br>
+<input type="checkbox" class="comment-input" name="Apex Legends" value="yes" > Apex Legends
+
+<h4> Rank in game, if multiple games, place commas between ranks</h4>
+<input type="text" class="comment-input" placeholder="RANK">
+
+<br>
+<br>
+<button class="submit-button"> Submit </button>
+
+</body>
+</html>
