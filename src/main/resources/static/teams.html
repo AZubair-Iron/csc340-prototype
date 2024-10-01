@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Hub</title>
+	<link rel="stylesheet" href="global.css"> 
+    <style>
+
+        /* Games Section */
+        .games-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .game-button {
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            width: 480px;
+            height: 270px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .game-button:hover {
+            transform: scale(1.05);
+        }
+
+        .game-button span {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Game Background Images */
+        .valorant {
+            background-image: url('images/valorant.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overwatch {
+            background-image: url('images/overwatch.jpg'); 
+            background-size: cover;
+            background-position: center;
+        }
+
+        .apex-legends {
+            background-image: url('images/apex.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="discussion_hub.html">Discussion</a></li>
+            <li><a href="coach_hub.html">Coaches</a></li>
+            <li><a href="teams.html">Teams</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Games Section -->
+    <div class="games-section">
+        <button class="game-button valorant" onclick="location.href='teams/valorant_team.html'">
+			<span> Teams: 2 </span>
+        </button>
+        <button class="game-button overwatch" onclick="location.href='teams/overwatch_team.html'">
+			<span> Teams: 2 </span>
+        </button>
+        <button class="game-button apex-legends" onclick="location.href='teams/apex_team.html'">
+			<span> Teams: 2 </span>
+        </button>
+    </div>
+
+</body>
+</html>

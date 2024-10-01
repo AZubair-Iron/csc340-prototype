@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            position: relative;
+        }
+
+        /* Style for the navigation links */
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+		
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: left-center;
+            color: #333;
+        }
+
+        .discussion-post {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 5px solid #28a745;
+        }
+
+        .discussion-post .post-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .discussion-post .post-content {
+            margin-top: 10px;
+        }
+
+        .comment-box {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .comments-section {
+            margin-top: 20px;
+        }
+
+        .comment {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            margin-left: 0;
+        }
+
+        .comment p {
+            margin: 0;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .reply {
+            border-left: 2px solid #ddd;
+            padding-left: 15px;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .reply-box {
+            display: none;
+            margin-top: 10px;
+        }
+		
+		.return {
+			padding: 10px;
+            border-bottom: 1px solid #ddd;
+            margin-left: 0;
+		}
+
+    </style>
+</head>
+<body>
+
+   <nav>
+        <ul id="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../discussion_hub.html">Discussion</a></li>
+			<li><a href="../coach_hub.html">Coaches</a></li>
+			<li><a href="../teams.html">Our Teams</a></li>
+        </ul>
+    </nav>
+	
+	
+
+    <div class="container">
+		<div class="return"> 
+			<a href="../discussion_hub.html"> Back </a>
+		</div>
+        <!-- Discussion Post Section This is a set template for the prototype-->
+        <div class="discussion-post">
+            
+            <div class="post-content">
+                <p>
+                    What are your favorite games to play!
+                </p>
+            </div>
+			<p class="post-author">Author: Arsal Zubair</p>
+        </div>
+		<!-- one of the few functionally -->
+        <div class="comment-box">
+            <h3>Leave a Comment</h3>
+            <textarea id="comment-input" rows="3" placeholder="Write your comment here..."></textarea>
+            <br>
+            <button onclick="addComment()">Submit Comment</button>
+        </div>
+
+        <div class="comments-section">
+            <h3>Comments</h3>
+            <div id="comments-list">
+                <!-- Comments will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+		function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('show');
+        }
+	
+        function addComment() {
+            const commentInput = document.getElementById('comment-input');
+            const commentText = commentInput.value.trim();
+
+            if (commentText !== '') {
+                const commentList = document.getElementById('comments-list');
+
+                // Create a new comment element
+                const newComment = createCommentElement('Anonymous User', commentText);
+
+                // Add the new comment to the comments list
+                commentList.appendChild(newComment);
+
+                // Clear the input field
+                commentInput.value = '';
+            }
+        }
+
+        function createCommentElement(author, content) {
+            // Create a comment element structure
+            const comment = document.createElement('div');
+            comment.classList.add('comment');
+
+            const commentAuthor = document.createElement('p');
+            commentAuthor.classList.add('comment-author');
+            commentAuthor.textContent = author;
+
+            const commentContent = document.createElement('p');
+            commentContent.textContent = content;
+
+            // Create reply button
+            const replyButton = document.createElement('button');
+            replyButton.textContent = 'Reply';
+            replyButton.style.marginTop = '10px';
+            replyButton.onclick = () => showReplyBox(comment);
+
+            // Create reply box for nested replies
+            const replyBox = document.createElement('div');
+            replyBox.classList.add('reply-box');
+
+            const replyInput = document.createElement('textarea');
+            replyInput.rows = '2';
+            replyInput.style.width = '100%';
+            replyInput.placeholder = 'Write your reply...';
+
+            const submitReplyButton = document.createElement('button');
+            submitReplyButton.textContent = 'Submit Reply';
+            submitReplyButton.style.marginTop = '10px';
+            submitReplyButton.onclick = () => addReply(comment, replyInput);
+
+            // Build the reply box
+            replyBox.appendChild(replyInput);
+            replyBox.appendChild(submitReplyButton);
+
+            // Append elements to the comment
+            comment.appendChild(commentAuthor);
+            comment.appendChild(commentContent);
+            comment.appendChild(replyButton);
+            comment.appendChild(replyBox);
+
+            return comment;
+        }
+
+        function showReplyBox(commentElement) {
+            const replyBox = commentElement.querySelector('.reply-box');
+            replyBox.style.display = 'block';
+        }
+
+        function addReply(commentElement, replyInput) {
+            const replyText = replyInput.value.trim();
+
+            if (replyText !== '') {
+                const replySection = createReplyElement('Anonymous User', replyText);
+
+                // Append the new reply to the comment element
+                commentElement.appendChild(replySection);
+
+                // Clear the reply input
+                replyInput.value = '';
+            }
+        }
+
+        function createReplyElement(author, content) {
+            // Create a reply element structure
+            const reply = document.createElement('div');
+            reply.classList.add('reply');
+
+            const replyAuthor = document.createElement('p');
+            replyAuthor.classList.add('comment-author');
+            replyAuthor.textContent = author;
+
+            const replyContent = document.createElement('p');
+            replyContent.textContent = content;
+
+            // Create a new nested reply button
+            const replyButton = document.createElement('button');
+            replyButton.textContent = 'Reply';
+            replyButton.style.marginTop = '10px';
+            replyButton.onclick = () => showReplyBox(reply);
+
+            // Create another nested reply box
+            const replyBox = document.createElement('div');
+            replyBox.classList.add('reply-box');
+
+            const replyInput = document.createElement('textarea');
+            replyInput.rows = '2';
+            replyInput.style.width = '100%';
+            replyInput.placeholder = 'Write your reply...';
+
+            const submitReplyButton = document.createElement('button');
+            submitReplyButton.textContent = 'Submit Reply';
+            submitReplyButton.style.marginTop = '10px';
+            submitReplyButton.onclick = () => addReply(reply, replyInput);
+
+            replyBox.appendChild(replyInput);
+            replyBox.appendChild(submitReplyButton);
+
+            // Append elements to the reply
+            reply.appendChild(replyAuthor);
+            reply.appendChild(replyContent);
+            reply.appendChild(replyButton);
+            reply.appendChild(replyBox);
+
+            return reply;
+        }
+    </script>
+
+</body>
+</html>

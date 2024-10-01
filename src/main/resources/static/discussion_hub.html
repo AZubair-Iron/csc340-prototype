@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Hub</title>
+	<link rel="stylesheet" href="global.css"> 
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-bar input {
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .search-bar button:hover {
+            background-color: #218838;
+        }
+
+        /* Filters and Tags */
+        .filters {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .filters select, .filters input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        /* Discussion Post List */
+        .discussion-list {
+            margin-bottom: 20px;
+        }
+
+        .discussion-post {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .discussion-post:hover {
+            background-color: #f0f0f0;
+        }
+
+        .discussion-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .discussion-meta {
+            margin-top: 10px;
+            color: #888;
+        }
+
+        /* Hamburger menu for each post */
+        .post-menu-icon {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			cursor: pointer;
+			font-size: 24px; /* Increase the font size for better visibility */
+			color: #555;
+			padding: 10px; /* Add padding around the icon */
+			border-radius: 50%; /* Make it round */
+			transition: background-color 0.3s ease; /* Smooth transition */
+		}
+		
+		.post-menu-icon:hover {
+			background-color: rgba(0, 0, 0, 0.1); /* Change background on hover */
+		}
+
+        .post-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .post-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .post-menu ul li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .post-menu ul li:last-child {
+            border-bottom: none;
+        }
+
+        .post-menu ul li:hover {
+            background-color: #f4f4f4;
+        }
+
+        .create-discussion {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .create-discussion button {
+            padding: 15px 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .create-discussion button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="discussion_hub.html">Discussion</a></li>
+			<li><a href="coach_hub.html">Coaches</a></li>
+			<li><a href="teams.html">Our Teams</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Discussion Hub</h1>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search discussions...">
+            <button>Search</button>
+        </div>
+
+        <!-- Filters and Tags -->
+        <div class="filters">
+            <select>
+                <option value="all">All Topics</option>
+                <option value="Games">Games</option>
+                <option value="Esports">Esports</option>
+                <option value="College">College</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <!-- List of Discussions -->
+        <div class="discussion-list">
+
+            <!-- Discussion Post 1 -->
+            <div class="discussion-post">
+				<a href="discussion/discussion_template.html" class="discussion-link">
+					<div class="discussion-content">
+						<div class="discussion-title">Favorite Games?</div>
+						<div class="discussion-meta">by Arsal Zubair | 0 comments | Games</div>
+					</div>
+				</a>
+				<span class="post-menu-icon" onclick="togglePostMenu(this)">&#x22EE;</span> <!-- UNICODE for the three column dots -->
+				<div class="post-menu">
+					<ul>
+						<li>Report</li>
+						<li>Follow</li>
+						<li>Delete Post</li>
+						<li>Block User</li>
+					</ul>
+				</div>
+			</div>
+
+
+        </div>
+
+        <!-- Create Discussion Button -->
+        <div class="create-discussion" id="create-discussion">
+            <button>Create Discussion</button>
+        </div>
+    </div>
+
+    <script>
+
+        function togglePostMenu(postMenuIcon) {
+            const postMenu = postMenuIcon.nextElementSibling;
+            postMenu.style.display = postMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        
+    </script>
+
+</body>
+</html>
