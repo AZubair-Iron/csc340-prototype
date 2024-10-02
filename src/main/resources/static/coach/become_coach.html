@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="../css/global.css">
 </head>
 <style>
+    .forum {
+        margin-top: 75px;
+        margin-left: 50px;
+    }
+
     .comment-input {
             padding: 10px;
             margin: 10px;
@@ -46,14 +51,16 @@
 <body>
 
 <!-- Navigation Bar -->
-<nav>
-    <ul id="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../discussion_hub.html">Discussion</a></li>
-        <li><a href="../coach_hub.html">Coaches</a></li>
-        <li><a href="../teams.html">Teams</a></li>
-    </ul>
-</nav>
+<div class="topnav">
+    <a class="active" href="../homepage.html">Home</a>
+    <a href="../calendar.html">Events</a>
+    <a href="../discussion_hub.html">Discussion</a>
+    <a href="../teams.html">View Teams</a>
+    <a href="../coach_hub.html">Coaches</a>
+    <a href="../adminsettings.html">Admin Settings</a>
+    <a href="../login_register.html"> Login </a>
+    <a href="../profile.html">Profile</a>
+</div>
 
 <!--
 Application Forum:
@@ -65,7 +72,7 @@ Need
     Game
     Ranked in game
 -->
-
+<div class="forum">
 <h1> Coach Application Forum </h1>
 
 <h4> Enter your Username </h4>
@@ -89,7 +96,7 @@ Need
 
 <br>
 <br>
-<button class="submit-button"> Submit </button>
-
+<button class="submit-button" onclick="location.href='../coach_hub.html'"> Submit </button>
+</div>
 </body>
 </html>

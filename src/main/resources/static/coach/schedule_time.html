@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/global.css">
+    <title>Schedule Days and Times</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 100px;
+            margin-left: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .schedule-list {
+            margin-top: 20px;
+        }
+        .schedule-item {
+            background-color: #e9ecef;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+<div class="topnav">
+    <a class="active" href="../homepage.html">Home</a>
+    <a href="../calendar.html">Events</a>
+    <a href="../discussion_hub.html">Discussion</a>
+    <a href="../teams.html">View Teams</a>
+    <a href="../coach_hub.html">Coaches</a>
+    <a href="../adminsettings.html">Admin Settings</a>
+    <a href="../login_register.html"> Login </a>
+    <a href="../profile.html">Profile</a>
+</div>
+<div class="container">
+    <h1>Schedule Days and Times</h1>
+    <label for="day">Select Day:</label>
+    <select id="day">
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday">Saturday</option>
+        <option value="Sunday">Sunday</option>
+    </select>
+
+    <label for="time">Select Time:</label>
+    <select id="time">
+        <option value="9:00 AM - 10:00 AM">9:00 AM - 10:00 AM</option>
+        <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+        <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+        <option value="1:00 PM - 2:00 PM">1:00 PM - 2:00 PM</option>
+        <option value="2:00 PM - 3:00 PM">2:00 PM - 3:00 PM</option>
+        <option value="3:00 PM - 4:00 PM">3:00 PM - 4:00 PM</option>
+    </select>
+
+    <button onclick="scheduleTime()">Add to Schedule</button>
+
+    <div class="schedule-list" id="schedule-list">
+        <!-- Scheduled times will appear here -->
+    </div>
+</div>
+
+<script>
+    function scheduleTime() {
+        const day = document.getElementById('day').value;
+        const time = document.getElementById('time').value;
+
+        if (day && time) {
+            const scheduleList = document.getElementById('schedule-list');
+
+            // Create a new schedule item
+            const scheduleItem = document.createElement('div');
+            scheduleItem.className = 'schedule-item';
+            scheduleItem.innerHTML = `
+                <span>${day} - ${time}</span>
+                <button class="remove-btn" onclick="removeSchedule(this)">Remove</button>
+            `;
+
+            // Append the new schedule item
+            scheduleList.appendChild(scheduleItem);
+        }
+    }
+
+    function removeSchedule(button) {
+        const scheduleItem = button.parentElement;
+        scheduleItem.remove();
+    }
+</script>
+
+</body>
+</html>
