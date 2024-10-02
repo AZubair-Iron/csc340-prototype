@@ -10,12 +10,12 @@ public class APIController {
 
     @GetMapping("/")
     public String home() {
-        return "discussion_hub.html";
+        return "homepage.html";
     }
 
-    @GetMapping("/Index.html")
+    @GetMapping("/Homepage.html")
     public String redirectToExternalUrl() {
-        return "redirect:http://localhost:8080/index.html";
+        return "redirect:http://localhost:8080/homepage.html";
     }
 
     @GetMapping("/discussion")
