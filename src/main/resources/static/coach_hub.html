@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Hub</title>
+	<link rel="stylesheet" href="css/global.css">
+    <style>
+        
+        /* Coach Section */
+        .coach-section {
+			margin: auto;
+            padding: 50px;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .coach {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .coach h3 {
+            margin: 0;
+            color: #333;
+        }
+		
+		.game {
+			color: red;
+			font-size: 12px;
+			padding: 6px;
+		}
+
+        .rating {
+            color: gold;
+            font-size: 20px;
+			padding: 6px;
+        }
+
+        .comment-section {
+            margin-top: 10px;
+            padding-left: 10px;
+        }
+
+        .comment {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .comment-meta {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .reply {
+            padding-left: 20px; /* Indent replies */
+        }
+
+        .rating-input, .comment-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .become-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: right;
+        }
+
+        .schedule-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .coach-button {
+            background-color: #000;
+            border: none;
+            border-radius: 8px;
+            width: 125px;
+            height: 50px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .coach-button:hover {
+            transform: scale(1.05);
+        }
+
+        .coach-button span {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="topnav">
+        <a href="homepage.html">Home</a>
+        <a href="calendar.html">Events</a>
+        <a href="discussion_hub.html">Discussion</a>
+        <a href="teams.html">View Teams</a>
+        <a class="active" href="coach_hub.html">Coaches</a>
+        <a href="adminsettings.html">Admin Settings</a>
+        <a href="login_register.html"> Login </a>
+        <a href="profile.html">Profile</a>
+    </div>
+
+    <!-- Coach Section -->
+    <div class="coach-section">
+        <h2>Coaches</h2>
+        <div class="become-section">
+            <button class="coach-button" onclick="location.href='coach/become_coach.html'">Become a Coach</button>
+        </div>
+        <div class="coach">
+            <h3>Arsal Zubair</h3>
+
+            <div class="rating">⭐⭐⭐⭐☆</div>
+			<div class="game"> Game: Valorant </div>
+			<div class="about"> Hello, my name is Arsal and I am a Coach for Valorant. A little about me, I have peaked Immortal 2, almost 2 years of experience in Competitive Play. If you would like to contact me please use my email, akzubair@uncg.edu . Thank you and it will be a pleasure coaching you! </div>
+			<div class="comment-section">
+                <h4>Comments</h4>
+                <div class="comment">
+                    <p>Great coach! Helped me improve a lot.</p>
+                    <div class="comment-meta">by John | 1 reply</div>
+                    <div class="reply">
+                        <div class="comment">Thank you, John! Glad to hear that!</div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <p>Very knowledgeable.</p>
+                    <div class="comment-meta">by Bob</div>
+                </div>
+            </div>
+            <h4> Looking for a meeting? </h4>
+            <div class="schedule-section">
+                <button class="coach-button" onclick="location.href='coach/schedule_time.html'">Schedule</button>
+                <button class="coach-button">Contact Coach</button>
+            </div>
+		</div>
+			
+		
+	<!--
+            <input type="number" class="rating-input" min="1" max="5" placeholder="Rate (1-5)">
+            <input type="text" class="comment-input" placeholder="Leave a comment">
+            <button class="submit-button">Submit</button>
+        </div>
+	-->
+
+    </div>
+
+</body>
+</html>
