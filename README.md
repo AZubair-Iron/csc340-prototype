@@ -410,6 +410,110 @@ Endpoints for the Application table
 
 `A list of all events on the Calendar minus the deleted event`
 
+# Reports
+
+## A list of all Reports
+
+### Request
+
+`GET /reports/all`
+
+`GET http://localhost:8080/reports/all`
+
+### Response
+
+`A list of all Reports`
+
+## Get a Report by ID
+
+### Request
+
+`GET /reports/{id}`
+
+`GET http://localhost:8080/reports/4`
+
+### Response
+
+`{
+    "id": 4,
+    "name": "NooB0142",
+    "offense": "aim hacks",
+    "recount": 250
+}`
+
+## Get a list of Reports by Name
+
+### Request
+
+`GET /reports/name`
+
+`GET http://localhost:8080/reports/name?name=42`
+
+### Response
+
+`[
+    {
+        "id": 3,
+        "name": "NooB01420",
+        "offense": "aim hacks",
+        "recount": 200
+    },
+    {
+        "id": 4,
+        "name": "NooB0142",
+        "offense": "aim hacks",
+        "recount": 250
+    }
+]`
+
+## Add a new Report
+
+### Request
+
+`POST /reports/new`
+
+`POST http://localhost:8080/reports/new`
+
+`{
+    "name": "NooB01421",
+    "offense": "aim hacks",
+    "recount": 205
+}`
+
+### Response
+
+`A list of all Reports + the new Report`
+
+## Update a Report
+
+### Request
+
+`PUT /reports/update/{id}`
+
+`PUT http://localhost:8080/reports/update/3`
+
+`{
+    "name": "NooB01422",
+    "offense": "aim hacks",
+    "recount": 205
+}`
+
+### Reponse
+
+`The updated Response`
+
+## Delete a Report
+
+### Request
+
+`DELETE /reports/delete/{id}`
+
+`DELETE http://localhost:8080/reports/delete/3`
+
+### Response
+
+`A list of all Reports minus the deleted Report`
+
 # Teams
 
 # POST http://localhost:8080/teams/new
