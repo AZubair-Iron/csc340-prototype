@@ -1,4 +1,4 @@
-GET http://localhost:8080/customers/all
+# GET http://localhost:8080/customers/all
 
 [
     {
@@ -23,3 +23,35 @@ GET http://localhost:8080/customers/all
     }
 ]
 
+# GET http://localhost:8080/messages/all
+
+{
+  "messId": 1,
+  "title": "Title1",
+  "description": "Description 1.",
+  "authorId": 1,
+  "comments": [
+    {
+      "commentId": 1,
+      "authorId": 2,
+      "message": {
+        "messId": 1,
+        "title": "Title1",
+        "description": "Description 1.",
+        "authorId": 1,
+        "comments": [
+          {
+            "commentId": 1,
+            "authorId": 2,
+            "message": {
+              "messId": 1,
+              "title": "Title1",
+              "description": "Description 1.",
+              "authorId": 1
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
