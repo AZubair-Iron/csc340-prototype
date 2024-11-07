@@ -1,4 +1,4 @@
-package com.csc340.api_demo.user;
+package com.spartan.esports.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

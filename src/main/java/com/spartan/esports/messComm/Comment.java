@@ -1,4 +1,4 @@
-package com.csc340.api_demo.mess_comm;
+package com.spartan.esports.messComm;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;

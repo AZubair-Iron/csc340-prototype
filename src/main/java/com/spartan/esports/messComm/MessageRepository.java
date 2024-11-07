@@ -1,4 +1,4 @@
-package com.csc340.api_demo.mess_comm;
+package com.spartan.esports.messComm;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

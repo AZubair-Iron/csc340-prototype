@@ -1,4 +1,4 @@
-package com.csc340.api_demo.user;
+package com.spartan.esports.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

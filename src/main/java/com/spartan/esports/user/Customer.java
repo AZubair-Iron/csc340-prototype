@@ -1,4 +1,4 @@
-package com.csc340.api_demo.user;
+package com.spartan.esports.user;
 
 import jakarta.persistence.*;
 import java.util.List;
