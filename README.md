@@ -290,6 +290,8 @@ Endpoints for the Application table
 
 `PUT http://localhost:8080/banlist/update/1`
 
+`{ "offense": "wall hacks" }`
+
 ### Response
 
 `The updated Ban`
