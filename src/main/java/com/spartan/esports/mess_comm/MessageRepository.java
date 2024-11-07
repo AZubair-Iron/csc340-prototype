@@ -1,10 +1,13 @@
-package com.spartan.esports.mess_comm;
+package com.csc340.api_demo.mess_comm;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 @Repository
-public interface MessageRepository extends JpaRepository<Message, Long> {
-    // Custom query method to check for duplicate messages based on title and authorId
-    boolean existsByTitleAndAuthorId(String title, Long authorId);
+public interface MessageRepository extends JpaRepository<Message, Integer> {
+
+    List<Message> getMessageByTitle(String title);
+
+
 }

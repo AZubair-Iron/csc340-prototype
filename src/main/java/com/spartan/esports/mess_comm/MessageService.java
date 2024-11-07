@@ -1,4 +1,4 @@
-package com.spartan.esports.mess_comm;
+package com.csc340.api_demo.mess_comm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,31 +16,29 @@ public class MessageService {
         return messageRepository.findAll();
     }
 
-    public Message getMessageById(Long messId) {
+    public Message getMessageById(int messId) {
         return messageRepository.findById(messId).orElse(null);
     }
 
-    public Message createMessage(Message message) {
-        // Check if the message with the same title and author already exists
-        if (messageRepository.existsByTitleAndAuthorId(message.getTitle(), message.getAuthorId())) {
-            return null; // Or handle as needed
-        }
-        message.setTimePosted(LocalDateTime.now()); // Automatically set the timestamp
-        return messageRepository.save(message);
+    public List<Message> getMessageByTitle(String title) {
+        return messageRepository.getMessageByTitle(title);
     }
 
-    public Message updateMessage(Long messId, Message message) {
-        Message existingMessage = messageRepository.findById(messId).orElse(null);
-        if (existingMessage != null) {
-            existingMessage.setTitle(message.getTitle());
-            existingMessage.setDescription(message.getDescription());
-            existingMessage.setAuthorId(message.getAuthorId());
-            return messageRepository.save(existingMessage);
-        }
-        return null;
+    public void addNewMessage(Message message) {
+        messageRepository.save(message);
     }
 
-    public void deleteMessage(Long messId) {
+    public void updateMessage(int messId, Message message) {
+        Message existing = getMessageById(messId);
+        existing.setTitle(message.getTitle());
+        existing.setDescription(message.getDescription());
+        existing.setAuthorId(message.getAuthorId());
+        existing.setTimePosted(message.getTimePosted());
+
+        messageRepository.save(existing);
+    }
+
+    public void deleteMessageById(int messId) {
         messageRepository.deleteById(messId);
     }
 }

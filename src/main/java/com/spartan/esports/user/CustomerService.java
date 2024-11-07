@@ -1,4 +1,4 @@
-package com.spartan.esports.user;
+package com.csc340.api_demo.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,41 +11,36 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    // Get all customers
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
-    // Get a customer by ID
-    public Customer getCustomerById(Long customerId) {
-        return customerRepository.findById(customerId)
-                .orElseThrow(() -> new RuntimeException("Customer not found with ID " + customerId));
+    public Customer getCustomerById(int customerId) {
+        return customerRepository.findById(customerId).orElse(null);
     }
 
-    // Get customers by major
     public List<Customer> getCustomersByMajor(String major) {
-        return customerRepository.findByMajor(major);
+        return customerRepository.getCustomersByMajor(major);
     }
 
-    // Add a new customer
-    public Customer addNewCustomer(Customer customer) {
-        return customerRepository.save(customer);
+    public void addNewCustomer(Customer customer) {
+        customerRepository.save(customer);
     }
 
-    // Update an existing customer
-    public Customer updateCustomer(Long customerId, Customer customer) {
-        if (!customerRepository.existsById(customerId)) {
-            throw new RuntimeException("Customer not found with ID " + customerId);
-        }
-        customer.setUserId(customerId);  // Make sure to set the ID of the customer
-        return customerRepository.save(customer);
+    public void updateCustomer(int customerId, Customer customer) {
+        Customer existing = getCustomerById(customerId);
+        existing.setName(customer.getName());
+        existing.setEmail(customer.getEmail());
+        existing.setPassword(customer.getPassword());
+        existing.setAccountStatus(customer.getAccountStatus());
+        existing.setMajor(customer.getMajor());
+        existing.setEvents(customer.getEvents());
+        existing.setGames(customer.getGames());
+
+        customerRepository.save(existing);
     }
 
-    // Delete a customer by ID
-    public void deleteCustomerById(Long customerId) {
-        if (!customerRepository.existsById(customerId)) {
-            throw new RuntimeException("Customer not found with ID " + customerId);
-        }
+    public void deleteCustomerById(int customerId) {
         customerRepository.deleteById(customerId);
     }
 }

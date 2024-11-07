@@ -1,4 +1,4 @@
-package com.spartan.esports.mess_comm;
+package com.csc340.api_demo.mess_comm;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long messId;
+    private int messId;
 
     @Column(nullable = false, unique = true)
     private String title;
@@ -26,7 +26,7 @@ public class Message {
     @Column(nullable = false)
     private LocalDateTime timePosted;
 
-    public Message(Long messId, String title, String description, Long authorId, LocalDateTime timePosted) {
+    public Message(int messId, String title, String description, Long authorId, LocalDateTime timePosted) {
         this.messId = messId;
         this.title = title;
         this.description = description;
@@ -43,8 +43,8 @@ public class Message {
 
     public Message() {}
 
-    public Long getMessId() { return messId; }
-    public void setMessId(Long messId) { this.messId = messId; }
+    public int getMessId() { return messId; }
+    public void setMessId(int messId) { this.messId = messId; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }

@@ -1,4 +1,4 @@
-package com.spartan.esports.user;
+package com.csc340.api_demo.user;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -9,7 +9,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    private int userId;
 
     @Column(nullable = false)
     private String name;
@@ -32,7 +32,7 @@ public class Customer {
     private List<String> games;
 
     // Constructors
-    public Customer(Long userId, String name, String email, String password, String accountStatus, String major, List<String> events, List<String> games) {
+    public Customer(int userId, String name, String email, String password, String accountStatus, String major, List<String> events, List<String> games) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -57,10 +57,10 @@ public class Customer {
     }
 
     // Getter and Setter Methods
-    public Long getUserId() {
+    public int getUserId() {
         return userId;
     }
-    public void setUserId(Long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

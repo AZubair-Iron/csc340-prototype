@@ -1,4 +1,4 @@
-package com.spartan.esports.mess_comm;
+package com.csc340.api_demo.mess_comm;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -9,10 +9,10 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long commentId;
+    private int commentId;
 
     @Column(nullable = false)
-    private Long authorId;
+    private int authorId;
 
     @ManyToOne
     @JoinColumn(name = "messId", nullable = false)
@@ -27,7 +27,7 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Long commentId, Long authorId, Message message, String content, LocalDateTime timePosted) {
+    public Comment(int commentId, int authorId, Message message, String content, LocalDateTime timePosted) {
         this.commentId = commentId;
         this.authorId = authorId;
         this.message = message;
@@ -35,19 +35,19 @@ public class Comment {
         this.timePosted = timePosted;
     }
 
-    public Long getCommentId() {
+    public int getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(Long commentId) {
+    public void setCommentId(int commentId) {
         this.commentId = commentId;
     }
 
-    public Long getAuthorId() {
+    public int getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(Long authorId) {
+    public void setAuthorId(int authorId) {
         this.authorId = authorId;
     }
 

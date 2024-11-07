@@ -1,4 +1,4 @@
-package com.spartan.esports.mess_comm;
+package com.csc340.api_demo.mess_comm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,32 +19,28 @@ public class CommentService {
         return commentRepository.findAll();
     }
 
-    public Comment getCommentById(Long commentId) {
+    public Comment getCommentById(int commentId) {
         return commentRepository.findById(commentId).orElse(null);
     }
 
-    public Comment createComment(Comment comment) {
-        // Ensure that the associated message exists
-        Message message = messageRepository.findById(comment.getMessage().getMessId()).orElse(null);
-        if (message != null) {
-            comment.setMessage(message);
-            comment.setTimePosted(LocalDateTime.now());  // Now works since timePosted is added to Comment
-            return commentRepository.save(comment);
-        }
-        return null;  // Return null if the message doesn't exist
+    public List<Comment> getCommentsByMessage(Message message) {
+        return commentRepository.getCommentsByMessage(message);
     }
 
-    public Comment updateComment(Long commentId, Comment comment) {
-        Comment existingComment = commentRepository.findById(commentId).orElse(null);
-        if (existingComment != null) {
-            existingComment.setContent(comment.getContent());
-            existingComment.setAuthorId(comment.getAuthorId());
-            return commentRepository.save(existingComment);
-        }
-        return null;  // Return null if comment does not exist
+    public void updateComment(int commentId, Comment comment) {
+        Comment existing = getCommentById(commentId);
+        existing.setMessage(comment.getMessage());
+        existing.setContent(comment.getContent());
+        existing.setTimePosted(comment.getTimePosted());
+
+        commentRepository.save(existing);
     }
 
-    public void deleteComment(Long commentId) {
+    public void deleteCommentsById(int commentId) {
         commentRepository.deleteById(commentId);
+    }
+
+    public void addNewComment(Comment comment) {
+        commentRepository.save(comment);
     }
 }

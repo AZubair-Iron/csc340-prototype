@@ -1,4 +1,4 @@
-package com.spartan.esports.mess_comm;
+package com.csc340.api_demo.mess_comm;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,30 +10,33 @@ import java.util.List;
 public class MessageController {
 
     @Autowired
-    private MessageService messageService;
+    private MessageService service;
 
     @GetMapping("/all")
     public List<Message> getAllMessages() {
-        return messageService.getAllMessages();
+        return service.getAllMessages();
     }
 
     @GetMapping("/{messId}")
-    public Message getMessageById(@PathVariable Long messId) {
-        return messageService.getMessageById(messId);
+    public Message getMessageById(@PathVariable int messId) {
+        return service.getMessageById(messId);
     }
 
     @PostMapping("/new")
-    public Message createMessage(@RequestBody Message message) {
-        return messageService.createMessage(message);
+    public List<Message> addNewMessage(@RequestBody Message message) {
+        service.addNewMessage(message);
+        return service.getAllMessages();
     }
 
     @PutMapping("/update/{messId}")
-    public Message updateMessage(@PathVariable Long messId, @RequestBody Message message) {
-        return messageService.updateMessage(messId, message);
+    public Message updateMessage(@PathVariable int messId, @RequestBody Message message) {
+        service.updateMessage(messId, message);
+        return service.getMessageById(messId);
     }
 
     @DeleteMapping("/delete/{messId}")
-    public void deleteMessage(@PathVariable Long messId) {
-        messageService.deleteMessage(messId);
+    public List<Message> deleteMessageById(@PathVariable int messId) {
+        service.deleteMessageById(messId);
+        return service.getAllMessages();
     }
 }
