@@ -11,45 +11,41 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    // Get all customers
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
+    // Get a customer by ID
     public Customer getCustomerById(Long customerId) {
-        return customerRepository.findById(customerId).orElse(null);
+        return customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException("Customer not found with ID " + customerId));
     }
 
+    // Get customers by major
     public List<Customer> getCustomersByMajor(String major) {
-        return customerRepository.getCustomersByMajor(major);
+        return customerRepository.findByMajor(major);
     }
 
-    public List<Customer> getCustomersByAccountStatus(String accountStatus) {
-        return customerRepository.findByAccountStatus(accountStatus);
+    // Add a new customer
+    public Customer addNewCustomer(Customer customer) {
+        return customerRepository.save(customer);
     }
 
-    public List<Customer> getCustomersWithMoreThanXEvents(int eventCount) {
-        return customerRepository.findCustomersWithMoreThanXEvents(eventCount);
-    }
-
-    public void addNewCustomer(Customer customer) {
-        customerRepository.save(customer);
-    }
-
-    public void updateCustomer(Long customerId, Customer customer) {
-        Customer existing = getCustomerById(customerId);
-        if (existing != null) {
-            existing.setName(customer.getName());
-            existing.setEmail(customer.getEmail());
-            existing.setPassword(customer.getPassword());
-            existing.setAccountStatus(customer.getAccountStatus());
-            existing.setMajor(customer.getMajor());
-            existing.setEvents(customer.getEvents());
-            existing.setGames(customer.getGames());
-            customerRepository.save(existing);
+    // Update an existing customer
+    public Customer updateCustomer(Long customerId, Customer customer) {
+        if (!customerRepository.existsById(customerId)) {
+            throw new RuntimeException("Customer not found with ID " + customerId);
         }
+        customer.setUserId(customerId);  // Make sure to set the ID of the customer
+        return customerRepository.save(customer);
     }
 
+    // Delete a customer by ID
     public void deleteCustomerById(Long customerId) {
+        if (!customerRepository.existsById(customerId)) {
+            throw new RuntimeException("Customer not found with ID " + customerId);
+        }
         customerRepository.deleteById(customerId);
     }
 }

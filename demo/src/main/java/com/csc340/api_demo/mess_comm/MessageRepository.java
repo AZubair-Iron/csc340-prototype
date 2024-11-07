@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
+    // Custom query method to check for duplicate messages based on title and authorId
+    boolean existsByTitleAndAuthorId(String title, Long authorId);
 }

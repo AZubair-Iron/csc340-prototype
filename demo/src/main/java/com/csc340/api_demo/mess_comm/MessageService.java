@@ -21,7 +21,11 @@ public class MessageService {
     }
 
     public Message createMessage(Message message) {
-        message.setTimePosted(LocalDateTime.now());
+        // Check if the message with the same title and author already exists
+        if (messageRepository.existsByTitleAndAuthorId(message.getTitle(), message.getAuthorId())) {
+            return null; // Or handle as needed
+        }
+        message.setTimePosted(LocalDateTime.now()); // Automatically set the timestamp
         return messageRepository.save(message);
     }
 

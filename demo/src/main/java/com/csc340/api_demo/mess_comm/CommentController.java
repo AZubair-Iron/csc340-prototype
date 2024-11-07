@@ -17,8 +17,23 @@ public class CommentController {
         return commentService.getAllComments();
     }
 
-    @GetMapping("/byMessage/{messId}")
-    public List<Comment> getCommentsByMessageId(@PathVariable Long messId) {
-        return commentService.getCommentsByMessageId(messId);
+    @GetMapping("/{commentId}")
+    public Comment getCommentById(@PathVariable Long commentId) {
+        return commentService.getCommentById(commentId);
+    }
+
+    @PostMapping("/new")
+    public Comment createComment(@RequestBody Comment comment) {
+        return commentService.createComment(comment);
+    }
+
+    @PutMapping("/update/{commentId}")
+    public Comment updateComment(@PathVariable Long commentId, @RequestBody Comment comment) {
+        return commentService.updateComment(commentId, comment);
+    }
+
+    @DeleteMapping("/delete/{commentId}")
+    public void deleteComment(@PathVariable Long commentId) {
+        commentService.deleteComment(commentId);
     }
 }

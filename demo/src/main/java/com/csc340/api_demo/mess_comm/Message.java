@@ -1,8 +1,8 @@
 package com.csc340.api_demo.mess_comm;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
@@ -12,7 +12,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long messId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String title;
 
     private String description;
@@ -20,7 +20,7 @@ public class Message {
     @Column(nullable = false)
     private Long authorId;
 
-    @OneToMany(mappedBy = "message", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "message", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     @Column(nullable = false)
@@ -41,54 +41,23 @@ public class Message {
         this.timePosted = timePosted;
     }
 
-    public Message() {
-    }
+    public Message() {}
 
-    public Long getMessId() {
-        return messId;
-    }
+    public Long getMessId() { return messId; }
+    public void setMessId(Long messId) { this.messId = messId; }
 
-    public void setMessId(Long messId) {
-        this.messId = messId;
-    }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public Long getAuthorId() { return authorId; }
+    public void setAuthorId(Long authorId) { this.authorId = authorId; }
 
-    public String getDescription() {
-        return description;
-    }
+    public List<Comment> getComments() { return comments; }
+    public void setComments(List<Comment> comments) { this.comments = comments; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public LocalDateTime getTimePosted() {
-        return timePosted;
-    }
-
-    public void setTimePosted(LocalDateTime timePosted) {
-        this.timePosted = timePosted;
-    }
+    public LocalDateTime getTimePosted() { return timePosted; }
+    public void setTimePosted(LocalDateTime timePosted) { this.timePosted = timePosted; }
 }

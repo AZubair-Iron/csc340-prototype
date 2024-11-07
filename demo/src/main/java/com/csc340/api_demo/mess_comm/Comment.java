@@ -11,6 +11,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long commentId;
 
+    @Column(nullable = false)
+    private Long authorId;
+
     @ManyToOne
     @JoinColumn(name = "messId", nullable = false)
     private Message message;
@@ -19,18 +22,16 @@ public class Comment {
     private String content;
 
     @Column(nullable = false)
-    private Long authorId;
-
-    @Column(nullable = false)
-    private LocalDateTime timePosted;
+    private LocalDateTime timePosted;  // Add this field
 
     public Comment() {
     }
 
-    public Comment(Message message, String content, Long authorId, LocalDateTime timePosted) {
+    public Comment(Long commentId, Long authorId, Message message, String content, LocalDateTime timePosted) {
+        this.commentId = commentId;
+        this.authorId = authorId;
         this.message = message;
         this.content = content;
-        this.authorId = authorId;
         this.timePosted = timePosted;
     }
 
@@ -40,6 +41,14 @@ public class Comment {
 
     public void setCommentId(Long commentId) {
         this.commentId = commentId;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     public Message getMessage() {
@@ -56,14 +65,6 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
     }
 
     public LocalDateTime getTimePosted() {
