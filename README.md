@@ -219,6 +219,93 @@ Endpoints for the Application table
     }
 ]`
 
+# BanList Endpoints
+
+## List of all Bans
+
+### Request
+
+`GET /banlist/all`
+
+`GET http://localhost:8080/banlist/all`
+
+### Response
+
+`A List of all Bans`
+
+## Get on Ban by ID
+
+### Request
+
+`GET /banlist/{user_id}`
+
+`GET http://localhost:8080/banlist/5`
+
+### Response
+
+`{
+    "user_id": 5,
+    "user_name": "C. H. Eater B01",
+    "offense": "wall hacks"
+}`
+
+## Get a Ban by name
+
+### Request
+
+`GET /banlist/name`
+
+`GET http://localhost:8080/banlist/name?user_name=max`
+
+### Response
+
+`{
+    "user_id": 67,
+    "user_name": "C. H. Eater B01 max",
+    "offense": "wall hacks, aim bot"
+}`
+
+## Add new Ban
+
+### Request
+
+`POST /banlist/new`
+
+`POST http://localhost:8080/banlist/new`
+
+`{
+    "user_name": "C. H. Eater B01 99",
+    "offense": "wall hacks"
+}`
+
+### Response
+
+`A list of all Bans + the new Ban`
+
+## Update a Ban
+
+### Request
+
+`PUT /banlist/update/{user_id}`
+
+`PUT http://localhost:8080/banlist/update/1`
+
+### Response
+
+`The updated Ban`
+
+## Delete a Ban
+
+### Request
+
+`DELETE /banlist/delete/{user_id}`
+
+`DELETE http://localhost:8080/banlist/delete/1`
+
+### Response
+
+`A list of all Bans minus the deleted Ban`
+
 # Teams
 
 # POST http://localhost:8080/teams/new
