@@ -165,7 +165,7 @@ Endpoints for the Application table
 
 `PUT /applications/update/{user_id}`
 
-`PUT http://localhost:8080/applications/update/{2}`
+`PUT http://localhost:8080/applications/update/2`
 
 `{
         "coach": "User Name New",
