@@ -252,8 +252,6 @@ Endpoints for the Application table
 }
 
 # DELETE http://localhost:8080/teams/delete/3
-# Returns: ALL
-
 
 # Members
 
