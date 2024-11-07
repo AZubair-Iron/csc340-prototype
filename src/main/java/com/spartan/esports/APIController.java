@@ -28,7 +28,7 @@ public class APIController {
         return "teams.html";
     }
 
-    @GetMapping("/coaches")
+    @GetMapping("/com/spartan/esports/coaches")
     public String coach() {
         return "coach_hub.html";
     }
