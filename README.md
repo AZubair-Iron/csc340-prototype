@@ -351,8 +351,6 @@ Endpoints for the Application table
 }
 
 # DELETE http://localhost:8080/members/delete/4
-# Returns: ALL
-
 
 # Coaches
 
