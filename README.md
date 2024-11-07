@@ -306,6 +306,110 @@ Endpoints for the Application table
 
 `A list of all Bans minus the deleted Ban`
 
+# Calendar
+
+## List of all events on a Calendar
+
+### Request
+
+`GET /calendar/all`
+
+`GET http://localhost:8080/calendar/all`
+
+### Response
+
+`A list of all events on a Calendar`
+
+## Get one event from the Calendar by ID
+
+### Request
+
+`GET /calendar/{eventID}`
+
+`GET http://localhost:8080/calendar/2`
+
+### Response
+
+`{
+    "eventID": 2,
+    "name": "Overwatch event",
+    "date": "12/1/2024, 6:00pm - 9:00pm",
+    "location": "EUC",
+    "participating": "NO",
+    "attending": "NO"
+}`
+
+## Get a list of events on the Calendar by name
+
+### Request
+
+`GET /calendar/name`
+
+`GET http://localhost:8080/calendar/name?name=Valorant`
+
+### Response
+
+`{
+    "eventID": 52,
+    "name": "Valorant event",
+    "date": "11/19/2024, 6:00pm - 9:00pm",
+    "location": "EUC",
+    "participating": "YES",
+    "attending": "YES"
+}`
+
+## Add new event to Calendar
+
+### Request
+
+`POST /calendar/new`
+
+`POST http://localhost:8080/calendar/new`
+
+`{
+    "name": "Valorant event",
+    "date": "11/18/2024, 6:00pm - 9:00pm",
+    "location": "EUC",
+    "participating": "NO",
+    "attending": "YES"
+}`
+
+### Response
+
+`A list of all events on the Calendar + the new event`
+
+## Update an event on the Calendar
+
+### Request
+
+`PUT /calendar/update/{eventID}`
+
+`PUT http://localhost:8080/calendar/update/52`
+
+`{
+    "name": "CS:GO event",
+    "date": "11/20/2024, 6:00pm - 9:00pm",
+    "location": "EUC",
+    "participating": "NO",
+    "attending": "YES"
+}`
+
+### Response
+
+`The updated event on the Calendar`
+
+## Delete an event from the Calendar
+
+### Request
+
+`DELETE /calendar/delete/{eventID}`
+
+`DELETE http://localhost:8080/calendar/delete/52`
+
+### Response
+
+`A list of all events on the Calendar minus the deleted event`
+
 # Teams
 
 # POST http://localhost:8080/teams/new
