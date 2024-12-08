@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/stylehome.css">
+    <title>Ban update</title>
+</head>
+<body>
+
+<br>
+<br>
+
+<h1>Update Ban</h1>
+
+<div class="Section1">
+  <form action="/banlist/update" method="post">
+    <label>Ban ID: </label>
+    <input type="number" id="user_id" name="user_id" data-th-value="${banned_list.user_id}" readonly/>
+    <br><br>
+
+    <label>Ban Name: </label>
+    <input type="text" id="user_name" name="user_name" data-th-value="${banned_list.user_name}" readonly/>
+    <br><br>
+
+    <label>Ban Offense: </label>
+    <input type="text" id="offense" name="offense" data-th-value="${banned_list.offense}"/>
+    <br><br>
+
+    <label>Ban Status: </label>
+    <input type="text" id="status" name="status" data-th-value="${banned_list.status}"/>
+
+    <br><br><br>
+
+    <button type="submit">Save</button>
+  </form>
+
+</div>
+
+</body>
+</html>
