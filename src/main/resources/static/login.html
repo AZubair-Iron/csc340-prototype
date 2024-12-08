@@ -1,101 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="css/login.css">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Login & Registration</title>
-
+  <title>Login</title>
   <link rel="stylesheet" href="css/login.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
+  <script type="text/javascript" src="script/validation.js" defer></script>
 </head>
-
 <body>
-
-  <header>
-    <h2 class="logo">UNCG Esports</h2>
-    <nav class="navigation">
-      <a href="homepage.html">Home</a>
-      <button class="btnLogin-popup">Login</button>
-    </nav>
-  </header>
-
-  <div class="wrapper">
-    <span class="icon-close"><ion-icon name="close"></ion-icon></span>
-
-    <div class="form-box login">
-      <h2>Login</h2>
-      <form action="#">
-        <div class="input-box">
-          <span class="icon"><ion-icon name="mail"></ion-icon></span>
-          <!-- Email/Username -->
-          <input type="email" required>
-          <label>Email</label>
-        </div>
-
-        <div class="input-box">
-          <!-- icon: https://ionic.io/ionicons -->
-          <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-          <input type="password" required>
-          <label>Password</label>
-        </div>
-
-        <div class="remember-forgot">
-          <label><input type="checkbox">Remember me</label>
-          <a href="#">Forgot Password?</a>
-        </div>
-        <button type="submit"  class="btn" id="loginBtn">Login</button>
-
-        <div class="login-register">
-          <p>Don't have an account?
-            <a href="#" class="register-link">Signup</a></p>
-        </div>
-      </form>
+<div class="wrapper">
+  <h1>Login</h1>
+  <p id="error-message"></p>
+  <form id="form">
+    <div>
+      <label for="email-input">
+        <span>@</span>
+      </label>
+      <input required type="email" name="email" id="email-input" placeholder="Email">
     </div>
-
-    <div class="form-box register">
-      <h2>Registration</h2>
-      <form action="#">
-        <div class="input-box">
-          <span class="icon"><ion-icon name="people-circle"></ion-icon></span>
-          <!-- Email/Username -->
-          <input type="text" required>
-          <label>Username</label>
-        </div>
-
-        <div class="input-box">
-          <span class="icon"><ion-icon name="mail"></ion-icon></span>
-          <!-- Email/Username -->
-          <input type="email" required>
-          <label>Email</label>
-        </div>
-
-        <div class="input-box">
-          <!-- icon: https://ionic.io/ionicons -->
-          <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-          <input type="password" required>
-          <label>Password</label>
-        </div>
-
-        <div class="remember-forgot">
-          <label><input type="checkbox">I agree to the terms & conditions</label>
-        </div>
-        <button type="submit" class="btn" id="registerBtn" >Register</button>
-
-        <div class="login-register">
-          <p>Already have an account?
-            <a class="login-link">Login</a></p>
-        </div>
-      </form>
+    <div>
+      <label for="password-input">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm240-200q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"/></svg>
+      </label>
+      <input required type="password" name="password" id="password-input" placeholder="Password">
     </div>
-
-  </div>
-
-  <script src="script/register_script.js"></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <button type="submit" class="btn" id="loginBtn">Login</button>
+  </form>
+  <p>New here? <a href="signup.html">Create an Account</a></p>
+</div>
 </body>
-
 </html>
