@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" data-th-href="@{/css/login.css}">
   <script src="script/validation.js"></script>
 </head>
 <body>
 <header>
   <nav class="navigation">
-    <a href="homepage.html">Home</a>
+    <a href="../static/homepage.html">Home</a>
   </nav>
 </header>
 <div class="wrapper">
   <h1>Login</h1>
-  <form method="post" action="login.html" data-th-object="${loginRequest}">
+  <form method="post" action="/users/login" data-th-object="${loginRequest}">
     <div class="input-box">
       <label for="email-input">
         <span>@</span>
@@ -30,7 +30,7 @@
     </div>
     <button type="submit" class="btn" name="login" value="Login">Login</button>
   </form>
-  <p>New here? <a href="signup.html">Create an Account</a></p>
+  <p>New here? <a href="/users/signup">Create an Account</a></p>
 </div>
 </body>
 </html>

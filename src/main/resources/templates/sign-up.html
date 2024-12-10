@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" data-th-href="@{/css/login.css}">
   <script src="script/validation.js"></script>
 </head>
 
 <body>
 <header>
   <nav class="navigation">
-    <a href="homepage.html">Home</a>
+    <a href="../static/homepage.html">Home</a>
   </nav>
 </header>
 <div class="wrapper">
   <h1>Sign Up</h1>
-  <form method="post" action="signup.html" data-th-object="${signupRequest}">
+  <form method="post" action="/users/signup" data-th-object="${registerRequest}">
     <div class="input-box">
       <label for="name-input">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></svg>
@@ -35,10 +35,9 @@
       </label>
       <input required type="password" name="password" id="password-input" placeholder="Password">
     </div>
-    <button type="submit" class="btn" name="sign-up">Sign Up</button>
+    <button type="submit" class="btn" name="sign-up" value="Sign Up">Sign Up</button>
   </form>
-  <p>Already have an Account? <a href="login.html">Login</a></p>
-
+  <p>Already have an Account? <a href="/users/login">Login</a></p>
 </div>
 </body>
 </html>

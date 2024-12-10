@@ -7,18 +7,14 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     @Autowired
-    private final UserRepository userRepo;
-
-    public UserService(UserRepository userRepo) {
-        this.userRepo = userRepo;
-    }
+    UserRepository userRepo;
 
     public User registerUser(String name, String email, String password){
-        if (email == null && password == null) {
+        if (email == null || password == null) {
             return null;
         } else {
-            if (userRepo.findFirstByLogin(email).isPresent()) {
-                System.out.println("Duplicate Login");
+            if (userRepo.findFirstByEmail(email).isPresent()) {
+                System.out.println("Duplicate Email");
                 return null;
             }
             User user = new User();

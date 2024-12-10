@@ -10,22 +10,38 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Integer userId;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
+    public User() {
+    }
+
+    public User(Integer userId, String name, String email, String password) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    /*
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private AccountStatus accountStatus;
 
-    private String major;
+    String major;
 
     @ElementCollection
     @CollectionTable(name = "user_events", joinColumns = @JoinColumn(name = "user_id"))
@@ -36,26 +52,14 @@ public class User {
     @CollectionTable(name = "user_games", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "game_id")
     private List<String> games = new ArrayList<>();
-
-    /* Constructor */
-    public User() {
-    }
-
-    public User(String name, String email, String password, AccountStatus accountStatus, String major) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.accountStatus = accountStatus;
-        this.major = major;
-    }
+    */
 
     /* Getter and Setter */
-
-    public int getUserId() {  // userId
+    public Integer getUserId() {  // userId
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -83,6 +87,7 @@ public class User {
         this.password = password;
     }
 
+    /*
     public AccountStatus getAccountStatus() {  // account status
         return accountStatus;
     }
@@ -114,6 +119,7 @@ public class User {
     public void setGames(List<String> games) {
         this.games = games;
     }
+    */
 
     @Override
     public boolean equals(Object o) {
@@ -133,11 +139,7 @@ public class User {
         return "User{" +
                 "userId=" + userId +
                 ", name=" + name + '\'' +
-                ", email=" + email + '\'' +
-                ", accountStatus=" + accountStatus + '\'' +
-                ", major=" + major + '\'' +
-                ", events=" + events + '\'' +
-                ", games=" + games +
+                ", email=" + email +
                 '}';
     }
 }

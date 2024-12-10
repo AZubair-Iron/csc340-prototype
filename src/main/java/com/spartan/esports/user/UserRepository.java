@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    Optional<User> findByEmailAndPassword(String email, String password);
+    Optional<User> findByEmailAndPassword(String email, String password);  // login
 
-    Optional<User> findFirstByLogin(String email);
+    Optional<User> findFirstByEmail(String email);  // prevent duplicated email registered
 }

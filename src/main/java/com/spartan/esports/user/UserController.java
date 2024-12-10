@@ -1,34 +1,34 @@
 package com.spartan.esports.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 
-    private final UserService userService;
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/signup")
     public String getSignUpPage(Model model) {
-        model.addAttribute("signupRequest", new User());
-        return "signup.html";
+        model.addAttribute("registerRequest", new User());
+        return "sign-up";
     }
 
     @GetMapping("/login")
     public String getLoginPage(Model model) {
         model.addAttribute("loginRequest", new User());
-        return "login.html";
+        return "login";
     }
 
     @PostMapping("/signup")
     public String signup(@ModelAttribute User user) {
-        System.out.println("sign up request: " + user);
+        System.out.println("register request: " + user);
         User registeredUser = userService.registerUser(user.getName(), user.getEmail(), user.getPassword());
-        return registeredUser == null ? "error_page.html" : "redirect:/login";
+        return registeredUser == null ? "error-page" : "redirect:/users/login";
     }
 
     @PostMapping("/login")
@@ -36,11 +36,10 @@ public class UserController {
         System.out.println("login request: " + user);
         User authenticated = userService.authenticate(user.getEmail(), user.getPassword());
         if (authenticated != null) {
-            model.addAttribute("userLogin", authenticated.getName());  // ??? 30:43
-            return "profile.html";
+            model.addAttribute("userLogin", authenticated.getName());
+            return "profile";
         } else {
-            return "error_page.html";
+            return "error-page";
         }
     }
-
 }
