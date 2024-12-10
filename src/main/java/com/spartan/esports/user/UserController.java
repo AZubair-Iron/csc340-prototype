@@ -1,54 +1,46 @@
 package com.spartan.esports.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
-import jakarta.validation.Valid;
-import java.util.Optional;
-
-@RestController
-@RequestMapping("/user")
-@Validated
+@Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
+    @GetMapping("/signup")
+    public String getSignUpPage(Model model) {
+        model.addAttribute("signupRequest", new User());
+        return "signup.html";
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage(Model model) {
+        model.addAttribute("loginRequest", new User());
+        return "login.html";
+    }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> registerUser(@Valid @RequestBody User user) {
-        User registeredUser = userService.registerUser(user);
-        return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
+    public String signup(@ModelAttribute User user) {
+        System.out.println("sign up request: " + user);
+        User registeredUser = userService.registerUser(user.getName(), user.getEmail(), user.getPassword());
+        return registeredUser == null ? "error_page.html" : "redirect:/login";
     }
-
 
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestParam String email, @RequestParam String password) {
-        User user = userService.login(email, password);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public String login(@ModelAttribute User user, Model model) {
+        System.out.println("login request: " + user);
+        User authenticated = userService.authenticate(user.getEmail(), user.getPassword());
+        if (authenticated != null) {
+            model.addAttribute("userLogin", authenticated.getName());  // ??? 30:43
+            return "profile.html";
+        } else {
+            return "error_page.html";
+        }
     }
 
-
-    @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable int userId, @Valid @RequestBody User userDetails) {
-        User updatedUser = userService.updateUser(userId, userDetails.getName(), userDetails.getEmail(), userDetails.getMajor());
-        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-    }
-
-
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable int userId) {
-        userService.deleteUser(userId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-
-    @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserProfile(@PathVariable int userId) {
-        User user = userService.getUserProfile(userId);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
 }

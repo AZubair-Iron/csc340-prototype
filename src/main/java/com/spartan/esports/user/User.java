@@ -1,41 +1,30 @@
 package com.spartan.esports.user;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import java.util.*;
 
 @Entity
 @Table(name = "users")
-@EqualsAndHashCode
-@ToString
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private int userId;
 
     @Column(nullable = false)
-    @Size(min = 2, max = 50)
     private String name;
 
     @Column(nullable = false, unique = true)
-    @Email
     private String email;
 
     @Column(nullable = false)
-    @Size(min = 8)
     private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AccountStatus accountStatus;
 
-    @Column(nullable = false)
     private String major;
 
     @ElementCollection
@@ -129,14 +118,14 @@ public class User {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof  User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId;
+        return Objects.equals(userId, user.userId) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(userId, name, email, password);
     }
 
     @Override
