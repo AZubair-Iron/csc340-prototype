@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>Event Details | Spartan Esports</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+<br>
+
+
+
+<h1>Event Details</h1>
+<br><br>
+
+<div class="Section1">
+  <table class="center" style="width:60%">
+    <tr>
+      <th>Event ID</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Participating</th>
+      <th>Attending</th>
+      <th>Edit/Remove</th>
+    </tr>
+    <tr data-th-each="calendar : ${eventList}">
+      <td data-th-text="${calendar.eventID}"></td>
+      <td data-th-text="${calendar.name}"></td>
+      <td data-th-text="${calendar.date}"></td>
+      <td data-th-text="${calendar.location}"></td>
+      <td data-th-text="${calendar.participating}"></td>
+      <td data-th-text="${calendar.attending}"></td>
+      <td>
+        <a data-th-href="@{/calendar/update/{id} (id=${calendar.eventID})}">Edit</a>
+        <a data-th-href="@{/calendar/delete/{id} (id=${calendar.eventID})}">Delete</a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

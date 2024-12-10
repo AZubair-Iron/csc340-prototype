@@ -37,7 +37,7 @@ public class MemberController {
     }
 
     @PostMapping("/new")
-    public String addNewMember(@RequestBody Member member) {
+    public String addNewMember(Member member) {
         service.addNewMember(member);
         return "redirect:/members/all";
     }
@@ -49,7 +49,7 @@ public class MemberController {
     }
 
     @PutMapping("/update/{memberId}")
-    public Member updateMember(@PathVariable int memberId, @RequestBody Member member) {
+    public Member updateMember(@PathVariable int memberId, Member member) {
         service.updateMember(memberId, member);
         return service.getMemberById(memberId);
     }

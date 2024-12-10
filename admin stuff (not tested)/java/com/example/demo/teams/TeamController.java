@@ -44,7 +44,7 @@ public class TeamController {
     }
 
     @PostMapping("/new")
-    public String addNewTeam(@RequestBody Team team){
+    public String addNewTeam(Team team){
         service.addNewTeam(team);
         return "redirect:/teams/all";
     }

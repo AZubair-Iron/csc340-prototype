@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>Update Event | Spartan Esports</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+<br><br>
+
+<h1>Update Event</h1>
+<br><br>
+
+<div class="Section1">
+    <form action="/calendar/update" method="post">
+        <label>Event Name: </label>
+        <input type="text" id="name" name="name" data-th-value="${calendar.name}"/>
+        <br><br>
+
+        <label>Event Date: </label>
+        <input type="text" id="date" name="date" data-th-value="${calendar.date}"/>
+        <br><br>
+
+        <label>Event Location: </label>
+        <input type="text" id="location" name="location" data-th-value="${calendar.location}"/>
+        <br><br>
+
+        <label>Participating</label>
+        <input type="text" id="participating" name="participating" data-th-value="${calendar.participating}">
+        <br><br>
+
+        <label>Attending</label>
+        <input type="text" id="attending" name="attending" data-th-value="${calendar.attending}">
+
+
+        <br><br><br>
+
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -49,16 +49,22 @@ public class CoachController {
         return service.getAllCoaches();
     }
 
-    @PutMapping("/update/{CoachId}")
-    public Coach updateCoach(@PathVariable int CoachId, @RequestBody Coach Coach) {
-        service.updateCoach(CoachId, Coach);
-        return service.getCoachById(CoachId);
+    @GetMapping("/update/{CoachId}")
+    public String updateCoachForm(@PathVariable int CoachId, Model model) {
+        model.addAttribute("coach", service.getCoachById(CoachId));
+        return "coach-update";
     }
 
-    @DeleteMapping("/delete/{CoachId}")
-    public List<Coach> deleteCoachById(@PathVariable int CoachId) {
+    @PostMapping("/update")
+    public String updateCoach(Coach coach) {
+        service.addNewCoach(coach);
+        return "redirect:/coaches/" + coach.getCoachId();
+    }
+
+    @GetMapping("/delete/{CoachId}")
+    public String deleteCoachById(@PathVariable int CoachId) {
         service.deleteCoachById(CoachId);
-        return service.getAllCoaches();
+        return "redirect:/coaches/all";
     }
 
 }

@@ -36,7 +36,7 @@ public class BanListController {
     }
 
      @PostMapping("/new")
-     public String addNewBanList(@RequestBody BanList banList) {
+     public String addNewBanList(BanList banList) {
          banListService.addNewBanList(banList);
          return "redirect:/banlist/all";
      }
