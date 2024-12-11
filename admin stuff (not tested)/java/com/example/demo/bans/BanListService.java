@@ -27,6 +27,10 @@ public class BanListService {
         banListRepository.save(existing);
     }
 
+    public void saveBanList(BanList banlist) {
+        banListRepository.save(banlist);
+    }
+
     public void deleteBanListByID(int user_id) {
         banListRepository.deleteById(user_id);
     }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>Update Member | Spartan Esports</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+
+<br>
+<br>
+
+<h1>Update Member</h1>
+
+<div class="Section1">
+    <form action="/members/update" method="post">
+        <label>Member ID: </label>
+        <input type="number" id="memberId" name="memberId" data-th-value="${member.memberId}" readonly/>
+        <br><br>
+
+        <label>Team: </label>
+        <input type="text" id="team" name="team" data-th-value="${member.team}" readonly/>
+        <br><br>
+
+        <label>Member Role: </label>
+        <input type="text" id="role" name="role" data-th-value="${member.role}"/>
+
+        <br><br><br>
+
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+
+
+
+</body>
+</html>

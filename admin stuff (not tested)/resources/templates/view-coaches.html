@@ -34,19 +34,28 @@
 
     <table class="center" style="width:50%">
         <tr>
-            <th>Coach</th>
+            <th>Coach ID</th>
+            <th>Coach Name</th>
             <th>Game</th>
             <th>Rank</th>
             <th>Rating</th>
             <th>View Profile</th>
+            <th>Delete/Edit</th>
         </tr>
         <tr data-th-each="coach : ${coachList}">
+            <td data-th-text="${coach.coachId}"></td>
             <td data-th-text="${coach.name}"></td>
             <td data-th-text="${coach.game}"></td>
             <td data-th-text="${coach.rank}"></td>
             <td data-th-text="${coach.rating}"></td>
-            <td><a href="#">View Coach</a></td>
+            <td><a href="#"><button>View Coach</button></a></td>
+            <td>
+                <a data-th-href="@{/coaches/update/{id} (id=${coach.coachId})}"><button>Edit</button></a>
+                <a data-th-href="@{/coaches/delete/{id} (id=${coach.coachId})}"><button>Remove</button></a>
+            </td>
         </tr>
     </table>
+
+    <a data-th-href="@{/coaches/coachForm}"><button>New Coach</button></a>
 </body>
 </html>

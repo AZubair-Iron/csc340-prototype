@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>Update Coaches</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+
+
+
+<div class="Section1">
+    <form action="/coaches/update" method="post">
+        <label>Coach ID: </label>
+        <input type="number" id="coachId" name="coachId" data-th-value="${coach.coachId}" readonly/>
+        <br><br>
+
+        <label>Coach Name: </label>
+        <input type="text" id="name" name="name" data-th-value="${coach.name}" readonly/>
+        <br><br>
+
+        <label>Coach Rank: </label>
+        <input type="text" id="rank" name="rank" data-th-value="${coach.rank}"/>
+        <br><br>
+
+        <label>Coach Rating: </label>
+        <input type="text" id="rating" name="rating" data-th-value="${coach.rating}"/>
+        <br><br>
+
+        <label>Coach Game: </label>
+        <input type="text" id="game" name="game" data-th-value="${coach.game}"/>
+
+        <br><br><br>
+
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+
+
+</body>
+</html>

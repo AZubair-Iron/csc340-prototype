@@ -39,6 +39,10 @@ public class TeamService {
         teamRepository.save(existing);
     }
 
+    public void saveTeam(Team team) {
+        teamRepository.save(team);
+    }
+
     public void deleteTeamById(int teamId) {
         teamRepository.deleteById(teamId);
     }

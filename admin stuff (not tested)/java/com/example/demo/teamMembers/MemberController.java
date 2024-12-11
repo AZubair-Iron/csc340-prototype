@@ -48,10 +48,16 @@ public class MemberController {
         return "manage-edit-team";
     }
 
-    @PutMapping("/update/{memberId}")
-    public Member updateMember(@PathVariable int memberId, Member member) {
-        service.updateMember(memberId, member);
-        return service.getMemberById(memberId);
+    @PostMapping("/update")
+    public String updateMember(Member member) {
+        service.saveMember(member);
+        return "redirect:/members/all";
+    }
+
+    @GetMapping("/update/{memberId}")
+    public String updateMemberForm(@PathVariable int memberId, Model model) {
+        model.addAttribute("member", service.getMemberById(memberId));
+        return "member-update";
     }
 
     @GetMapping("/delete/{memberId}")

@@ -24,8 +24,9 @@ public class CoachController {
     }
 
     @GetMapping("/{CoachId}")
-    public Coach GetCoach(@PathVariable int CoachId) {
-        return service.getCoachById(CoachId);
+    public String GetCoach(@PathVariable int CoachId, Model model) {
+        model.addAttribute("coach", service.getCoachById(CoachId));
+        return "coach-details";
     }
 
     @GetMapping("/name")
@@ -43,10 +44,13 @@ public class CoachController {
         return service.getCoachByRank(rank);
     }
 
+    @GetMapping("/coachForm")
+    public String coachForm() {return "new-coach";}
+
     @PostMapping("/new")
-    public List<Coach> addNewCoach(@RequestBody Coach Coach){
+    public String addNewCoach(Coach Coach){
         service.addNewCoach(Coach);
-        return service.getAllCoaches();
+        return "redirect:/coaches/all";
     }
 
     @GetMapping("/update/{CoachId}")
@@ -57,7 +61,7 @@ public class CoachController {
 
     @PostMapping("/update")
     public String updateCoach(Coach coach) {
-        service.addNewCoach(coach);
+        service.saveCoach(coach);
         return "redirect:/coaches/" + coach.getCoachId();
     }
 

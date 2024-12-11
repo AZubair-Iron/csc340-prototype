@@ -19,12 +19,14 @@ public class BanListController {
         model.addAttribute("banList", banListService.getAllBanList());
         return "banreports";
     }
-/**
- @GetMapping("/{user_id}")
- public BanList getOneBanList(@PathVariable int user_id) {
- return banListService.getBanListByID(user_id);
- }
 
+     @GetMapping("/{user_id}")
+     public String getOneBanList(@PathVariable int user_id, Model model) {
+        model.addAttribute("banreport", banListService.getBanListByID(user_id));
+        return "banreport-details";
+     }
+
+ /**
  @GetMapping("/name")
  public List<BanList> getBanListByName(@RequestParam(name = "user_name", defaultValue = "Eater") String user_name) {
  return banListService.getBanListByUsername(user_name);
@@ -50,7 +52,7 @@ public class BanListController {
 
      @PostMapping("/update")
      public String updateBanList(BanList banlist) {
-         banListService.addNewBanList(banlist);
+         banListService.saveBanList(banlist);
          return "redirect:/banlist/all";
      }
 
@@ -59,7 +61,7 @@ public class BanListController {
      @GetMapping("/delete/{user_id}")
      public String deleteBanListByID(@PathVariable int user_id) {
          banListService.deleteBanListByID(user_id);
-         return "redirect:banlist/all";
+         return "redirect:/banlist/all";
      }
 
 }

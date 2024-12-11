@@ -39,6 +39,10 @@ public class MemberService {
         memberRespository.save(existing);
     }
 
+    public void saveMember(Member member) {
+        memberRespository.save(member);
+    }
+
     public void deleteMemberById(int memberId) {
         memberRespository.deleteById(memberId);
     }

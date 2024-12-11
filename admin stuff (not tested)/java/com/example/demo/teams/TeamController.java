@@ -49,10 +49,16 @@ public class TeamController {
         return "redirect:/teams/all";
     }
 
-    @PutMapping("/update/{teamId}")
-    public Team updateTeam(@PathVariable int teamId, @RequestBody Team team) {
-        service.updateTeam(teamId, team);
-        return service.getTeamById(teamId);
+    @PostMapping("/update")
+    public String updateTeam(Team team) {
+        service.saveTeam(team);
+        return "redirect:/teams/all";
+    }
+
+    @GetMapping("/update/{teamId}")
+    public String updateTeamForm(@PathVariable int teamId, Model model) {
+        model.addAttribute("team", service.getTeamById(teamId));
+        return "teams-update";
     }
 
     @GetMapping("/delete/{teamId}")

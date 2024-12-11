@@ -43,6 +43,10 @@ public class CoachService {
         coachRepository.save(existing);
     }
 
+    public void saveCoach(Coach coach) {
+        coachRepository.save(coach);
+    }
+
     public void deleteCoachById(int CoachId) {
         coachRepository.deleteById(CoachId);
     }

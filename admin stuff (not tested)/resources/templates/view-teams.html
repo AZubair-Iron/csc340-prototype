@@ -30,7 +30,7 @@
     <br>
     
     <h1>View Teams</h1>
-
+<br>
 
     <table class="center" style="width:50%">
         <tr>
@@ -41,7 +41,7 @@
         <tr data-th-each="team : ${teamList}">
             <td data-th-text="${team.name}"></td>
             <td data-th-text="${team.game}"></td>
-            <td><a href="@{/members/team/{id} ()}"><button>View Team</button></a></td>
+            <td><a href="@{/teams/{id} (id=${team.teamId})}"><button>View Team</button></a></td>
         </tr>
     </table>
 
