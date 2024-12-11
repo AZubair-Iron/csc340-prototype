@@ -9,11 +9,27 @@
     <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
 </head>
 <body>
+<div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a data-th-href="@{/coach/all}">Coaches</a>
+    <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
 
+<a data-th-href="@{/admin/all}" class="return">
+    <span>Return</span>
+</a>
+
+<br>
+<br>
 <br>
 
 <h1>Update Team Information</h1>
-
+<br>
 <div class="Section1">
     <form action="/teams/update" method="post">
         <label>Team ID: </label>

@@ -10,19 +10,18 @@
 </head>
 <body>
 
-
 <div class="topnav">
-  <a href="homepage.html">Home</a>
-  <a href="calendar.html">Events</a>
-  <a href="discussion_hub.html">Discussion</a>
-  <a href="teams.html">View Teams</a>
-  <a href="coach_hub.html">Coaches</a>
-  <a class="active" href="adminsettings.html">Admin Settings</a>
-  <a href="login_register.html"> Login </a>
-  <a href="profile.html">Profile</a>
+  <a data-th-href="@{/home}">Home</a>
+  <a data-th-href="@{/calendar/list}">Events</a>
+  <a data-th-href="@{/discussion/home}">Discussion</a>
+  <a data-th-href="@{/games/all}">View Teams</a>
+  <a data-th-href="@{/coach/all}">Coaches</a>
+  <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
+  <a data-th-href="@{/login}"> Login </a>
+  <a data-th-href="@{/profile/user}">Profile</a>
 </div>
 
-<a href="adminsettingspass.html" class="return">
+<a data-th-href="@{/admin/all}" class="return">
   <span>Return</span>
 </a>
 
