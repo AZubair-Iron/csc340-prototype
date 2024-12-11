@@ -1,4 +1,4 @@
-package com.example.demo.calendar;
+package com.spartan.esports.calendar;
 
 
 import jakarta.persistence.*;

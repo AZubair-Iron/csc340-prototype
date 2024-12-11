@@ -1,4 +1,4 @@
-package com.example.demo.calendar;
+package com.spartan.esports.calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
