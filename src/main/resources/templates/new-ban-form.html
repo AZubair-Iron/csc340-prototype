@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>New Ban | Spartan Esports</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+
+<div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a data-th-href="@{/coach/all}">Coaches</a>
+    <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+<a data-th-href="@{/admin/all}" class="return">
+    <span>Return</span>
+</a>
+
+<br><br><br>
+
+<h1>New Ban</h1>
+<br><br>
+
+<div class="Section1">
+  <form action="/banlist/new" method="post">
+
+    <label>Ban Name: </label>
+    <input type="text" id="user_name" name="user_name" placeholder="Banned Username"/>
+    <br><br>
+
+    <label>Ban Offense: </label>
+    <input type="text" id="offense" name="offense" placeholder="Banned Offense"/>
+    <br><br>
+
+    <label>Ban Status: </label>
+    <input type="text" id="status" name="status" placeholder="Ban Status"/>
+
+    <br><br><br>
+
+    <button type="submit">Save</button>
+  </form>
+
+</div>
+
+</body>
+</html>

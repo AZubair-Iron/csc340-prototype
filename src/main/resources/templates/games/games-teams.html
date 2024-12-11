@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Game Discussion Hub</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}" />
+</head>
+<style>
+
+        /* Games Section */
+        .games-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin: auto;
+            gap: 20px;
+        }
+
+        .game-button {
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            display: inline-block;
+            align-items: center;
+            margin-right: 10px;
+            justify-content: center;
+            width: 480px;
+            height: 270px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .game-button:hover {
+            transform: scale(1.05);
+        }
+
+        .game-button span {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Game Background Images */
+        .valorant {
+            background-image: url('/images/valorant.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .overwatch {
+            background-image: url('/images/overwatch.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .apex-legends {
+            background-image: url('/images/apex.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+    .add-game-button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    .add-game-button:hover {
+        background-color: #218838;
+    }
+
+    .model {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .model-content {
+        background-color: white;
+        margin: 10% auto;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+        width: 400px;
+        border-radius: 8px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        cursor: pointer;
+    }
+
+    .close:hover {
+        color: #000;
+    }
+
+    .submit-button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: #218838;
+    }
+
+</style>
+<body>
+
+
+
+<div class="topnav">
+    <a  data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a class="active" data-th-href="@{/games/all}">View Teams</a>
+    <a data-th-href="@{/coach/all}">Coaches</a>
+    <a data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+    <a data-th-href="@{/login}"> Login </a>
+</div>
+
+
+<br><br>
+<button class="back-button" onclick="window.history.back();">Back</button>
+
+<h1>Game Hub</h1>
+
+<div class="games-section">
+
+
+    <div th:if="${gameList != null}">
+        <a th:each="game : ${gameList}"
+             th:class="'game-button ' + ${game.game.toLowerCase().replace(' ', '-')}"
+            data-th-href="@{/games/teams/{gameId}(gameId=${game.gameId})}">
+                <span th:text="${game.game} ">
+                    Game Info
+                </span>
+
+
+        </a>
+    </div>
+
+    <div th:if="${gameList == null}">
+        <p>No games found.</p>
+    </div>
+
+
+</div>
+</body>
+
+</html>

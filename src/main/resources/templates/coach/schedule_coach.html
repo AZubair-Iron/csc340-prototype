@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}" />
+    <title>Schedule Days and Times</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #007bff;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #495057;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        select:focus, button:focus {
+            border-color: #80bdff;
+            background-color: #e9f5ff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .schedule-list {
+            margin-top: 25px;
+        }
+
+        .schedule-item {
+            background-color: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .schedule-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, transform 0.2s;
+        }
+
+        .remove-btn:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body>
+<div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a class="active" data-th-href="@{/coach/all}">Coaches</a>
+    <a data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+<br><br>
+<button class="return-button" onclick="window.history.back();">Back</button>
+
+<div class="container">
+
+    <form action="/schedule/update" method="post">
+        <h1>Schedule Time</h1>
+
+
+
+
+        <label for="coachId"> Coach ID </label>
+        <input type="text" id="coachId" name="coachId" data-th-value="${coach.coachId}" placeholder="Coach ID"/>
+
+        <label for="user_id"> User ID</label>
+        <input type="text" id="user_id" name="user_id" th:value="${user_id}" placeholder="User ID"/>
+
+        <label for="date">Select Day:</label>
+        <select id="date" name="date" th:if="${uniqueDates != null and not #lists.isEmpty(uniqueDates)}">
+            <option th:each="date : ${uniqueDates}" th:value="${date}" th:text="${date}"></option>
+        </select>
+
+        <label for="time">Select Time:</label>
+        <select id="time" name="schedule_id" th:if="${scheduleList != null and not #lists.isEmpty(scheduleList)}">
+            <option th:each="hour : ${scheduleList}"
+                    th:value="${hour.scheduleId}"
+                    th:data-start-time="${hour.startTime}"
+                    th:data-end-time="${hour.endTime}"
+                    th:text="${hour.startTime + ' to ' + hour.endTime}">
+                    </option>
+        </select>
+
+
+        <input type="hidden" id="start_time" name="startTime">
+        <input type="hidden" id="end_time" name="endTime">
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+</div>
+
+
+</body>
+</html>

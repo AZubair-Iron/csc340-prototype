@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>Manage Team | Spartan Esports</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+
+<div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a data-th-href="@{/coach/all}">Coaches</a>
+    <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+    <a data-th-href="@{/admin/all}" class="return">
+        <span>Return</span>
+    </a>
+
+    <br>
+    <br>
+    <br>
+
+<a data-th-href="@{/teams/createForm}">
+    <span>Make New Team</span>
+</a>
+
+    <h1>Manage Team</h1>
+
+    <table class="center" style="width:50%">
+        <tr>
+            <th>Team Member</th>
+            <th>Profile</th>
+            <th>Role</th>
+            <th>Team Name</th>
+            <th></th>
+        </tr>
+        <tr data-th-each="member : ${memberList}">
+            <td data-th-text="${member.memberId}"></td>
+            <td><a href="#">Profile</a></td>
+            <td data-th-text="${member.role}"></td>
+            <td data-th-text="${member.team.name}"></td>
+            <td>
+                <a data-th-href="@{/members/delete/{id} (id=${member.memberId})}"><button>Remove</button></a>
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

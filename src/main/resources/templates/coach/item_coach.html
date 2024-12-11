@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coach</title>
+    <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .coach-section {
+            margin: 50px auto;
+            padding: 40px;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .coach {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 15px;
+        }
+
+        .coach h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #444;
+            font-weight: bold;
+        }
+
+        .game {
+            color: #ff4d4f;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .rating {
+            color: #f7b731;
+            font-size: 1.2rem;
+            padding: 6px 0;
+            font-weight: bold;
+        }
+
+        .comment-section {
+            margin-top: 20px;
+            padding-left: 15px;
+        }
+
+        .comment {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            border: 1px solid #e3e3e3;
+        }
+
+        .comment-meta {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .reply {
+            padding-left: 20px; /* Indent replies */
+            border-left: 3px solid #e0e0e0;
+            margin-top: 10px;
+        }
+
+        .rating-input,
+        .comment-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .rating-input:focus,
+        .comment-input:focus {
+            outline: none;
+            border-color: #4e54c8;
+            box-shadow: 0 0 5px rgba(78, 84, 200, 0.5);
+        }
+
+        .become-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .schedule-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .coach-button {
+            background-color: #4e54c8;
+            border: none;
+            border-radius: 8px;
+            width: 140px;
+            height: 50px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coach-button:hover {
+            transform: scale(1.08);
+            background-color: #3f3d56;
+        }
+
+        .coach-button span {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+            font-size: 0.9rem;
+        }
+
+        .coach-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topnav">
+        <a  data-th-href="@{/home}">Home</a>
+        <a data-th-href="@{/calendar/list}">Events</a>
+        <a data-th-href="@{/discussion/home}">Discussion</a>
+        <a data-th-href="@{/games/all}">View Teams</a>
+        <a class="active" data-th-href="@{/coach/all}">Coaches</a>
+        <a data-th-href="@{/admin/all}">Admin Settings</a>
+        <a data-th-href="@{/login}"> Login </a>
+        <a data-th-href="@{/profile/user}">Profile</a>
+    </div>
+
+<br><br>
+<button class="back-button" onclick="window.history.back();">Back</button>
+
+    <div class="coach-section">
+        <h2>Coach</h2>
+        <div th:if="${coach != null and not #lists.isEmpty(coach)}" th:each="coach : ${coach}" th:class="coach">
+            <h3 class="coach-text" th:text="${coach.userId.name}"> Coach Name </h3>
+            <div class="coach-text" th:text="'Game: ' + ${coach.game}"> Game: </div>
+            <div class="coach-text" th:text="'Rating: ' + ${coach.rating}">5.0</div>
+            <div class="coach-text" th:text="'Rank: ' + ${coach.rank}"> Rank </div>
+            <div class="coach-text" th:text="'Email: ' + ${coach.userId.email}"> Email </div>
+            <br>
+            <div class="coach-text" th:text="${coach.content}"> Content </div>
+            <h4> Looking for a meeting? </h4>
+
+            <div class="schedule-section">
+                <a class="coach-button" th:href="@{/coach/schedule/{coachId}(coachId=${coach.coachId})}">Schedule</a>
+                <a class="coach-button" th:href="@{/coach/schedule/view/{coachId}(coachId=${coach.coachId})}">View Schedule</a>
+                <a class="coach-button" th:href="@{/coach/review/{coachId}(coachId=${coach.coachId})}">Leave a Review</a>
+                <a class="coach-button" th:href="@{/coach/edit/{coachId}(coachId=${coach.coachId})}">Edit Profile</a>
+            </div>
+
+    </div>
+
+
+
+</body>
+</html>

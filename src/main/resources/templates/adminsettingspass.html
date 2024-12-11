@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>Admin Settings | Spartan Esports</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+
+<div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a data-th-href="@{/coach/all}">Coaches</a>
+    <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+    <br>
+    <br>
+    <br>
+
+    <h1>Admin Settings</h1>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <a href="view-students.html"><img src="images/admin-with-cogwheels.png" alt="View Students" width="100">
+            <h3>View Students</h3></a>
+        </div>
+        <div class="grid-item">
+            <a data-th-href="@{/teams/all}"> <img src="images/team-28-256.png" alt="View Teams" width="100">
+            <h3>View Teams</h3>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a data-th-href="@{/coaches/all}">
+                <img src="images/coach-instructor-icon.png" alt="View Coaches" width="100">
+                <h3>View Coaches</h3>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a data-th-href="@{/members/all}">
+                <img src="images/Edit_icon_(the_Noun_Project_30184).png" alt="Edit Teams" width="100">
+                <h3>Manage/Edit Team</h3>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="approve-new-member.html">
+                <img src="images/create-account-icon.png" alt="Approve New Accounts/Team Members" width="100">
+                <h3>Approve New Accounts/ <br>Team Members</h3>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a data-th-href="@{/banlist/all}">
+                <img src="images/ban-circle.512x512.png" alt="Ban Reports" width="100">
+                <h3>Ban Reports</h3>
+            </a>
+        </div>
+        
+        <div class="grid-item">
+            <a href="remove-posts.html">
+                <img src="images/removepost.png" alt="Remove Post" width="100">
+                <h3>Remove Posts</h3>
+            </a>
+        </div>
+        <div class="grid-item">
+            <a data-th-href="@{/calendar/calendarForm}">
+                <img src="images/add-calendar-512.png" alt="Create Event" width="100">
+                <h3>Create Event</h3>
+            </a>
+        </div>
+    </div>
+
+
+    
+
+
+</body>
+</html>

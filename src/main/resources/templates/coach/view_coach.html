@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Coach Hub</title>
+    <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f4f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .coach-section {
+            margin: 50px auto;
+            padding: 30px;
+            max-width: 1000px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .coach {
+            padding: 20px;
+            text-decoration: none;
+            background-color: #f8f8f8;
+            border: 2px solid #eaeaea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .coach:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background-color: #f0f0f0;
+            border-color: #dcdcdc;
+        }
+
+        .coach h3 {
+            margin: 0 0 10px;
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .game {
+            color: #555;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .coach-text {
+            color: #444;
+            font-size: 1rem;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .comment-section {
+            margin-top: 20px;
+            padding-left: 15px;
+        }
+
+        .comment {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e3e3e3;
+        }
+
+        .comment-meta {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .reply {
+            padding-left: 20px; /* Indent replies */
+            border-left: 3px solid #e0e0e0;
+            margin-top: 10px;
+        }
+
+        .rating-input,
+        .comment-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .rating-input:focus,
+        .comment-input:focus {
+            outline: none;
+            border-color: #4e54c8;
+            box-shadow: 0 0 5px rgba(78, 84, 200, 0.5);
+        }
+
+        .become-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .schedule-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        .coach-button {
+            background-color: #4e54c8;
+            border: none;
+            border-radius: 8px;
+            width: 140px;
+            height: 50px;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .coach-button:hover {
+            background-color: #3f3d56;
+            transform: scale(1.05);
+        }
+
+        .coach-button:active {
+            transform: scale(0.95);
+        }
+
+        .coach-button span {
+            position: absolute;
+            bottom: 8px;
+            left: 10px;
+            z-index: 2;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+            font-size: 0.9rem;
+        }
+
+        .coach-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="topnav">
+    <a  data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a class="active" data-th-href="@{/coach/all}">Coaches</a>
+    <a data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+<br>
+
+<div class="become-section">
+
+    <a class="coach-button" th:href="@{/applications/create}">Become a Coach</a>
+    <button class="return-button" onclick="window.history.back();">Back</button>
+</div>
+
+
+
+<h2 class="coach-header"> Coaches </h2>
+
+<div class="coach-section">
+    <a th:if="${coachList != null and not #lists.isEmpty(coachList)}" th:each="coach : ${coachList}" th:class="coach"
+        th:href="@{/coach/{coachId}(coachId=${coach.coachId})}">
+            <h3 class="coach-text" th:text="${coach.userId.name}"> Coach Name </h3>
+            <div class="coach-text" th:text="'Game: ' + ${coach.game}"> Game: </div>
+            <div class="coach-text" th:text="'Rating: ' + ${coach.rating}">5.0</div>
+            <div class="coach-text" th:text="'Rank: ' + ${coach.rank}"> Rank </div>
+            <br>
+            <div class="coach-text" th:text="${coach.content}"> Content </div>
+    </a>
+    <div th:if="${coachList == null or #lists.isEmpty(coachList)}">
+        <p>No coaches found.</p>
+    </div>
+</div>
+
+</body>
+</html>

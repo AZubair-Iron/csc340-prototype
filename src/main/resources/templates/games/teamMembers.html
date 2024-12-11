@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team</title>
+  <link rel="stylesheet" href="../../static/css/teams.css" th:href="@{/css/teams.css}" />
+  <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}" />
+</head>
+<body>
+
+<div class="topnav">
+  <a  data-th-href="@{/home}">Home</a>
+  <a data-th-href="@{/calendar/list}">Events</a>
+  <a data-th-href="@{/discussion/home}">Discussion</a>
+  <a class="active" data-th-href="@{/games/all}">View Teams</a>
+  <a data-th-href="@{/coach/all}">Coaches</a>
+  <a data-th-href="@{/admin/all}">Admin Settings</a>
+  <a data-th-href="@{/login}"> Login </a>
+  <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+<br><br>
+<button class="back-button" onclick="window.history.back();">Back</button>
+<!-- Team Section -->
+<div class="team-section">
+  <h1 class="team-title" th:text="${team.name}"> Valorant </h1>
+
+  <h2> Coach </h2>
+  <div class="row">
+    <a th:if="${coachList != null and not #lists.isEmpty(coachList)}" th:each="coach : ${coachList}" th:class="member" data-th-href="@{/members/update/{memberId}(memberId=${coach.memberId})}">
+      <img th:src="@{/images/profile.jpg}" alt="${coach.role}" class="profile-pic">
+      <div class="member-rl-name" th:text="${coach.user.name}"> Name </div>
+      <div class="member-name" th:text="${coach.tag}"> Tag </div>
+    </a>
+
+    <div th:if="${coachList == null or #lists.isEmpty(coachList)}">
+      <p>No coaches found.</p>
+    </div>
+  </div>
+
+  <h2> Manager</h2>
+  <div class="row">
+    <a th:if="${managerList != null and not #lists.isEmpty(managerList)}" th:each="manager : ${managerList}" th:class="member" data-th-href="@{/members/update/{memberId}(memberId=${manager.memberId})}">
+      <img th:src="@{/images/profile.jpg}" alt="${manager.role}" class="profile-pic">
+      <div class="member-rl-name" th:text="${manager.user.name}"> Name </div>
+      <div class="member-name" th:text="${manager.tag}"> Tag </div>
+    </a>
+
+    <div th:if="${managerList == null or #lists.isEmpty(managerList)}">
+      <p>No Manager found.</p>
+    </div>
+  </div>
+
+  <h2> Player</h2>
+  <div class="row">
+    <a th:if="${playerList != null and not #lists.isEmpty(playerList)}" th:each="player : ${playerList}" th:class="member" data-th-href="@{/members/update/{memberId}(memberId=${player.memberId})}">
+      <img th:src="@{/images/profile.jpg}" alt="${player.role}" class="profile-pic">
+      <div class="member-rl-name" th:text="${player.user.name}"> Name </div>
+      <div class="member-name" th:text="${player.tag}"> Tag </div>
+    </a>
+
+    <div th:if="${playerList == null or #lists.isEmpty(playerList)}">
+      <p>No players found.</p>
+    </div>
+  </div>
+
+  <h2>Sub</h2>
+  <div class="row">
+    <a th:if="${subList != null and not #lists.isEmpty(subList)}" th:each="sub : ${subList}" th:class="member" data-th-href="@{/members/update/{memberId}(memberId=${sub.memberId})}">
+      <img th:src="@{/images/profile.jpg}" alt="${sub.role}" class="profile-pic">
+      <div class="member-rl-name" th:text="${sub.user.name}"> Name </div>
+      <div class="member-name" th:text="${sub.tag}"> Tag </div>
+    </a>
+
+    <div th:if="${subList == null or #lists.isEmpty(subList)}">
+      <p>No subs found.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

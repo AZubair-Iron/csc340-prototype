@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}">
+    <head>
+        <meta charset="UTF-8">
+        <meta charset="UTF-8">
+        <title>Schedule List</title>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background-color: #f8f9fa;
+                color: #212529;
+            }
+
+            .navbar {
+                margin-bottom: 20px;
+                padding: 10px 20px;
+                background-color: #343a40;
+                color: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-link {
+                color: #f8f9fa;
+                text-decoration: none;
+                margin-right: 15px;
+                font-weight: bold;
+            }
+
+            .nav-link:hover {
+                text-decoration: underline;
+                color: #ced4da;
+            }
+
+            .container {
+                max-width: 900px;
+                margin: auto;
+                padding: 30px;
+                background-color: #ffffff;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            h1 {
+                color: #343a40;
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            .table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 15px;
+                background-color: #ffffff;
+            }
+
+            .table th {
+                background-color: #007bff;
+                color: white;
+                font-weight: bold;
+                padding: 15px;
+                text-align: left;
+                border: 1px solid #dee2e6;
+            }
+
+            .table td {
+                padding: 12px;
+                border: 1px solid #dee2e6;
+                text-align: left;
+            }
+
+            .table-striped tr:nth-child(even) {
+                background-color: #f8f9fa;
+            }
+
+            .table-striped tr:hover {
+                background-color: #e9ecef;
+            }
+
+            .btn {
+                display: inline-block;
+                background-color: #007bff;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1rem;
+                font-weight: bold;
+                text-align: center;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .btn:hover {
+                background-color: #0056b3;
+                transform: translateY(-2px);
+            }
+
+            .btn:active {
+                background-color: #004085;
+                transform: translateY(0);
+            }
+
+            .btn:focus {
+                outline: 3px solid #80bdff;
+                outline-offset: 2px;
+            }
+
+            .add-schedule-form {
+                max-width: 500px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .add-schedule-form h2 {
+                text-align: center;
+                margin-bottom: 20px;
+                color: #333;
+                font-size: 24px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #555;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+                transition: border-color 0.3s ease;
+            }
+
+            .form-control:focus {
+                border-color: #007bff;
+                outline: none;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+            }
+
+
+        </style>
+    </head>
+<body>
+
+
+<div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a class="active" data-th-href="@{/coach/all}">Coaches</a>
+    <a data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+<br><br>
+<button class="back-button" onclick="window.history.back();">Back</button>
+
+<div class="container">
+    <h1 data-th-text="${title.userId.name}"></h1>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Coach ID</th>
+            <th>Username</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Remove </th>
+        </tr>
+        <tr data-th-each="schedule : ${scheduleList}">
+            <td data-th-text="${schedule.scheduleId}"></td>
+            <td data-th-text="${schedule.coachId.userId.name}"></td>
+            <td data-th-text="${schedule.userId?.name ?: 'N/A'}"></td>
+            <td data-th-text="${schedule.date}"></td>
+            <td data-th-text="${schedule.startTime}"></td>
+            <td data-th-text="${schedule.endTime}"></td>
+            <td>
+                <a data-th-href="@{/schedule/delete/{scheduleId}(scheduleId=${schedule.scheduleId})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="add-schedule-form mt-4">
+    <h2>Add New Coaching Time</h2>
+    <form action="/schedule/add" method="post">
+        <input type="hidden" id="coachId" name="coachId" th:value="${title.coachId}" />
+
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="startTime">Start Time:</label>
+            <input type="time" id="startTime" name="startTime" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="endTime">End Time:</label>
+            <input type="time" id="endTime" name="endTime" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Add Schedule</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

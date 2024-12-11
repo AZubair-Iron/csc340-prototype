@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coach</title>
+  <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}" />
+  <style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f6f8;
+        margin: 0;
+        padding: 0;
+        color: #212529;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 30px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 30px;
+        font-size: 28px;
+    }
+
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #495057;
+    }
+
+    input[type="text"], input[type="radio"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="radio"] {
+        display: inline-block;
+        width: auto;
+    }
+
+    label {
+        display: inline;
+        font-size: 16px;
+        margin-left: 5px;
+        color: #495057;
+    }
+
+    input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+        outline: none;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: scale(1.02);
+    }
+
+    .btn-primary:active {
+        background-color: #003f7f;
+        transform: scale(0.98);
+    }
+
+    .return-button {
+        margin: 20px auto;
+        display: block;
+        padding: 10px 20px;
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .return-button:hover {
+        background-color: #5a6268;
+    }
+
+    .radio-group {
+        margin-bottom: 20px;
+    }
+
+    .radio-group input {
+        margin-right: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 22px;
+        }
+
+        input, button {
+            font-size: 14px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topnav">
+  <a data-th-href="@{/home}">Home</a>
+  <a data-th-href="@{/calendar/list}">Events</a>
+  <a data-th-href="@{/discussion/home}">Discussion</a>
+  <a data-th-href="@{/games/all}">View Teams</a>
+  <a class="active" data-th-href="@{/coach/all}">Coaches</a>
+  <a data-th-href="@{/admin/all}">Admin Settings</a>
+  <a data-th-href="@{/login}">Login</a>
+  <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+<div class="container">
+  <h1>Edit your Profile</h1>
+
+  <form action="/coach/update" method="post">
+    <div class="form-group">
+      <h3>Enter your name</h3>
+      <input type="text" id="coach" name="coach" data-th-value="${coach.userId.name}" readonly />
+    </div>
+
+    <input type="hidden" id="coachId" name="coachId" data-th-value="${coach.coachId}" />
+
+
+    <div class="form-group">
+      <h3>Select the game (Choose one)</h3>
+      <div th:if="${gameList != null and not #lists.isEmpty(gameList)}" th:each="game : ${gameList}">
+        <input type="radio" id="${game.gameId}" name="game" th:value="${game.gameId}" required />
+        <label for="${game.gameId}" th:text="${game.game}"></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <h3>Peak Rank</h3>
+      <input type="text" id="rank" name="rank" data-th-value="${coach.rank}" placeholder="Game Rank" required />
+    </div>
+
+    <div class="form-group">
+      <h3>Describe yourself and your coaching style</h3>
+      <textarea id="content" name="content" rows="10" data-th-text="${coach.content}" placeholder="Write your review here..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Changes</button>
+  </form>
+
+  <a class="return-button" onclick="window.history.back();">Back</a>
+</div>
+
+</body>
+</html>

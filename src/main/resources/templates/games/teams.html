@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}">
+    <title th:text="${game.game}">Game Teams</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #212529;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .teams-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .team-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background-color: #d18a8a;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .team-button:hover {
+            transform: translateY(-5px);
+            background-color: #0056b3;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .team-scoreline {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .game-day {
+            font-size: 14px;
+        }
+
+        .stats-panel {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .stats-panel h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topnav">
+    <a  data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a class="active" data-th-href="@{/games/all}">View Teams</a>
+    <a data-th-href="@{/coach/all}">Coaches</a>
+    <a data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+<div class="container">
+    <button class="back-button" onclick="window.history.back();">Back</button>
+
+
+
+    <div class="teams-section">
+        <div th:if="${teamList != null and not #lists.isEmpty(teamList)}">
+            <a th:each="team : ${teamList}"
+               th:class="team-button"
+               data-th-href="@{/members/{teamId}(teamId=${team.teamId})}">
+                <div class="team-name" th:text="${team.name}">Varsity</div>
+                <div class="team-scoreline" th:text="'Score: ' + ${team.scoreline}">Score: 3-2</div>
+                <div class="game-day" th:text="'Game Day: ' + ${team.matchDay}">Game Day: Wednesday 7 PM</div>
+            </a>
+        </div>
+
+        <div th:if="${teamList == null or #lists.isEmpty(teamList)}">
+            <p>No teams found.</p>
+        </div>
+    </div>
+
+    <div class="stats-panel" id="stats-panel">
+        <h2>Game Stats</h2>
+        <span id="game-type">Loading...</span> <br>
+        <span id="price-details">Loading... </span> <br>
+        <span id="platforms">Loading... </span> <br>
+        <span id ="player-count">Loading... </span> <br>
+        <p id="stats-error" style="color: red; display: none;">Failed to load stats.</p>
+    </div>
+
+    <div class="hidden-button">
+        <input type="hidden" id="steamAppId" th:value="${game.steamAppId}">
+    </div>
+</div><script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const steamAppId = document.querySelector('.hidden-button input#steamAppId')?.value;
+        const gameType = document.getElementById('game-type');
+        const priceDetails = document.getElementById('price-details');
+        const platformsId = document.getElementById('platforms');
+        const playerCount = document.getElementById('player-count');
+        const statsPanel = document.getElementById('stats-panel');
+        const errorElement = document.getElementById('stats-error');
+
+        if (!statsPanel || !gameType || !errorElement || !steamAppId) {
+            if (!steamAppId) {
+                gameType.textContent = 'No Steam App ID';
+            }
+            return;
+        }
+
+        errorElement.style.display = 'none';
+        statsPanel.style.display = 'block';
+
+        // Fetch game details
+        fetch(`https://corsproxy.io/?url=https://store.steampowered.com/api/appdetails?appids=${steamAppId}`) //Need to use a cors proxy to get information
+            .then((response) => response.json())
+            .then((data) => {
+                if (data[steamAppId] && data[steamAppId].success) {
+                    const gameData = data[steamAppId].data;
+
+                    // Extracting game type
+                    const gameTypeValue = gameData.type || 'N/A';
+
+                    // Extracting price details
+                    const priceDetailsValue = gameData.price_overview
+                        ? {
+                              currency: gameData.price_overview.currency,
+                              initialPrice: gameData.price_overview.initial / 100, // Prices are in cents
+                              finalPrice: gameData.price_overview.final / 100,
+                              discount: gameData.price_overview.discount_percent,
+                          }
+                        : 'Free or Price Unavailable';
+
+                    // Extracting platforms
+                    const platformsValue = Object.keys(gameData.platforms)
+                        .filter((platform) => gameData.platforms[platform])
+                        .join(', ') || 'None';
+
+                    // Update the UI
+                    gameType.textContent = `Game Type: ${gameTypeValue}`;
+                    priceDetails.textContent =
+                        priceDetailsValue === 'Free or Price Unavailable'
+                            ? 'Price: Free or Unavailable'
+                            : `Price: ${priceDetailsValue.finalPrice} ${priceDetailsValue.currency} (${priceDetailsValue.discount}% off)`;
+                    platformsId.textContent = `Supported Platforms: ${platformsValue}`;
+                } else {
+                    console.error('Failed to fetch game details.');
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching game details:', error);
+                errorElement.style.display = 'block';
+            });
+
+        // Fetch player count
+        fetch(`https://corsproxy.io/?url=https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=${steamAppId}`) //Need to use a cors proxy to get information
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.response && data.response.player_count !== undefined) {
+                    playerCount.textContent = `Current Players: ${data.response.player_count}`;
+                } else {
+                    playerCount.textContent = 'Player count not available';
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching player count:', error);
+                playerCount.textContent = 'Error fetching player count';
+            });
+    });
+</script>
+</body>
+</html>

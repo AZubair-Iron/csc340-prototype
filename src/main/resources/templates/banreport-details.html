@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>Ban Details | Spartan Esports</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+<div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a data-th-href="@{/coach/all}">Coaches</a>
+    <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+<a data-th-href="@{/admin/all}" class="return">
+    <span>Return</span>
+</a>
+
+<br><br><br>
+
+<h1>Ban Details</h1>
+<br>
+
+<table class="center" style="width:50%">
+  <tr>
+    <th>Reported User ID</th>
+    <th>Reported Username:</th>
+    <th>Ban Reason</th>
+    <th>Status</th>
+    <th>Edit/Remove Ban</th>
+  </tr>
+  <tr data-th-each="banned_list : ${banList}">
+    <td data-th-text="${banned_list.user_id}"></td>
+    <td data-th-text="${banned_list.user_name}"></td>
+    <td data-th-text="${banned_list.offense}"></td>
+    <td data-th-text="${banned_list.status}"></td>
+    <td>
+      <a data-th-href="@{/banlist/update/{id} (id=${banned_list.user_id})}"><button>Edit</button></a>
+      <a data-th-href="@{/banlist/delete/{id} (id=${banned_list.user_id})}"><button>Remove</button></a>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

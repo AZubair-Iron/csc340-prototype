@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>Update Ban | Spartan Esports</title>
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+</head>
+<body>
+<div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a data-th-href="@{/coach/all}">Coaches</a>
+    <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+</div>
+
+<a data-th-href="@{/admin/all}" class="return">
+    <span>Return</span>
+</a>
+
+<br>
+<br>
+<br>
+
+<h1>Update Team Information</h1>
+<br>
+<div class="Section1">
+    <form action="/teams/update" method="post">
+        <label>Team ID: </label>
+        <input type="number" id="teamId" name="teamId" data-th-value="${team.teamId}" readonly/>
+        <br><br>
+
+        <label>Name: </label>
+        <input type="text" id="name" name="name" data-th-value="${team.name}"/>
+        <br><br>
+
+        <label>Game: </label>
+        <input type="text" id="game" name="game" data-th-value="${team.game}"/>
+
+
+        <br><br><br>
+
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+
+</body>
+</html>

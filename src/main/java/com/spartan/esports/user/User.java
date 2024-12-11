@@ -1,0 +1,145 @@
+package com.spartan.esports.user;
+
+import jakarta.persistence.*;
+
+import java.util.*;
+
+@Entity
+@Table(name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer userId;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    public User() {
+    }
+
+    public User(Integer userId, String name, String email, String password) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    /*
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
+
+    String major;
+
+    @ElementCollection
+    @CollectionTable(name = "user_events", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "event_id")
+    private List<String> events = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "user_games", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "game_id")
+    private List<String> games = new ArrayList<>();
+    */
+
+    /* Getter and Setter */
+    public Integer getUserId() {  // userId
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {  // name
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {  // email
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {  // password
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /*
+    public AccountStatus getAccountStatus() {  // account status
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public String getMajor() {  // major
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public List<String> getEvents() {  // events
+        return events;
+    }
+
+    public void setEvents(List<String> events) {
+        this.events = events;
+    }
+
+    public List<String> getGames() {  // games
+        return games;
+    }
+
+    public void setGames(List<String> games) {
+        this.games = games;
+    }
+    */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId) && Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, name, email, password);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", name=" + name + '\'' +
+                ", email=" + email +
+                '}';
+    }
+}

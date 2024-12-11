@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+    <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}" />
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #4e54c8, #8f94fb);
+        color: #333;
+    }
+
+    header {
+        margin-top: 45px;
+        background-color: #3f3d56;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 20px;
+    }
+
+
+    .coach-info {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .coach-info h2 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    .coach-info .average-rating {
+        margin-top: 10px;
+        font-size: 1.2rem;
+        color: #555;
+    }
+
+    .reviews {
+        margin-top: 20px;
+    }
+
+    .review {
+        background: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+
+    .review .rating {
+        font-weight: bold;
+        color: #ff9900;
+    }
+
+    .review .user {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 5px;
+    }
+
+    .review .comment {
+        margin-top: 10px;
+        font-size: 1rem;
+    }
+
+    .leave-review {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .leave-review h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .leave-review form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .leave-review label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .leave-review input,
+        .leave-review textarea,
+        .leave-review select,
+        .leave-review button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .leave-review button {
+            background: #4e54c8;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .leave-review button:hover {
+            background: #3f3d56;
+        }
+
+  </style>
+</head>
+<body>
+
+  <div class="topnav">
+    <a data-th-href="@{/home}">Home</a>
+    <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/discussion/home}">Discussion</a>
+    <a data-th-href="@{/games/all}">View Teams</a>
+    <a class="active" data-th-href="@{/coach/all}">Coaches</a>
+    <a data-th-href="@{/admin/all}">Admin Settings</a>
+    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/profile/user}">Profile</a>
+  </div>
+
+  <header>
+    <h1>Coach Reviews</h1>
+  </header>
+
+  <div class="container">
+    <div class="coach-info">
+      <h2 data-th-text="${coach.userId.name}">Coach Name</h2>
+      <p class="average-rating" data-th-text="'Rating: ' + ${coach.rating}"></p>
+    </div>
+
+    <div class="reviews">
+      <div th:if="${reviewList != null and not #lists.isEmpty(reviewList)}" th:each="review : ${reviewList}" class="review">
+          <div class="rating" data-th-text="${review.rating}">Rating: 5.0</div>
+          <div class="user" data-th-text="'Reviewed by: ' + ${review.userId.name}">Reviewed by: User123</div>
+          <div class="comment" data-th-text="${review.comment}">Amazing coach! Helped me improve significantly.</div>
+      </div>
+
+      <div th:if="${reviewList == null or #lists.isEmpty(reviewList)}">
+        <p>No reviews found.</p>
+      </div>
+    </div>
+
+    <div class="leave-review">
+      <h3>Leave a Review</h3>
+      <form action="/reviews/submit" method="post">
+        <input type="hidden" id="coachId" name="coachId" th:value="${coach.coachId}" />
+
+        <input type="hidden" id="user" name="user" th:value="100" />
+
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" th:value="${coach. userId.name}" placeholder="Enter your name" readonly>
+
+        <label for="rating">Rating:</label>
+        <select id="rating" name="rating" required>
+          <option value="">Select Rating</option>
+          <option value="5">5 - Excellent</option>
+          <option value="4">4 - Good</option>
+          <option value="3">3 - Average</option>
+          <option value="2">2 - Poor</option>
+          <option value="1">1 - Terrible</option>
+        </select>
+
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" rows="4" placeholder="Write your review here..." required></textarea>
+
+        <button type="submit">Submit Review</button>
+
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
