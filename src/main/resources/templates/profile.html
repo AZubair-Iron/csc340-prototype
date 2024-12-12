@@ -12,12 +12,12 @@
 <body>
 <header>
   <nav class="navigation">
-    <a href="../static/homepage.html">Home</a>
+    <a href="/home">Home</a>  <!-- Home -->
   </nav>
 </header>
 <div class="container light-style flex-grow-1 container-p-y">
   <h4 class="font-weight-bold py-3 mb-4">
-    Account settings - Hello, <span data-th-text="${user.name}"></span>!
+    Account settings - Hello, Jack!
   </h4>
   <div class="card overflow-hidden">
     <div class="row no-gutters row-bordered row-border-light">
@@ -49,30 +49,30 @@
                   <input type="file" class="account-settings-fileinput">
                 </label> &nbsp;
                 <button type="button" class="btn btn-default md-btn-flat">Reset</button>
-                <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                <div class="text-light small mt-1">Allowed JPG, GIF or PNG. </div>
               </div>
             </div>
             <hr class="border-light m-0">
             <div class="card-body">
               <div class="form-group">
-                <label class="form-label">Username</label>
-                <input type="text" class="form-control mb-1" value="nmaxwell">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control mb-1" value="Jack">
               </div>
               <div class="form-group">
-                <label class="form-label">Name</label>
-                <input type="text" class="form-control" value="Nelle Maxwell">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" value="Xie">
               </div>
               <div class="form-group">
                 <label class="form-label">E-mail</label>
-                <input type="text" class="form-control mb-1" value="nmaxwell@mail.com">
+                <input type="text" class="form-control mb-1" value="jack@gmail.com">
                 <div class="alert alert-warning mt-3">
                   Your email is not confirmed. Please check your inbox.<br>
-                  <a href="javascript:void(0)">Resend confirmation</a>
+                  <a data-th-href="@{/users/confirm}">Resend confirmation</a>
                 </div>
               </div>
               <div class="form-group">
-                <label class="form-label">Company</label>
-                <input type="text" class="form-control" value="Company Ltd.">
+                <label class="form-label">Major</label>
+                <input type="text" class="form-control" value="COmputer Science">
               </div>
             </div>
           </div>
@@ -253,7 +253,7 @@
     </div>
   </div>
   <div class="text-right mt-3">
-    <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
+    <button type="button" class="btn btn-primary" data-th-href="@{/home}">Save changes</button>&nbsp;
     <button type="button" class="btn btn-default">Cancel</button>
   </div>
 </div>
