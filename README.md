@@ -1,18 +1,40 @@
-# Instruction to launch
-Open XAMPP and launch Apache and MySQL 
-Launch com/spartan/esports/SpartanEsportsApplication.java 
+# Spartan Esports Application
 
-# Use Cases
+Welcome to the Spartan Esports Application!
+---
 
-## Customer
+## 🚀 How to Launch
 
-## Provider 
-Coach is able to add his own available times to schedule 
-Coach is able to remove available times 
-Coach is able to edit his profile and change what games, rank, and what they provide.
-Coach is able to look at reviews. 
-Members are able to change their game tag.
-Customer is able to review for coaches. 
-Customer is able to book the available times
+1. Open **XAMPP** and start:
+   - **Apache**
+   - **MySQL**
+2. Navigate to the project directory and launch the application by running:
 
-## Admin
+---
+
+## Use Cases
+
+### Customer
+- **Review Coaches**: Customers can leave reviews for coaches.
+- **Book Sessions**: Customers can book available times with their preferred coach.
+
+---
+
+### Provider (Coach)
+- **Manage Availability**: 
+- Add available times to their schedule.
+- Remove available times.
+- **Profile Management**: 
+- Edit personal profiles, including games, rank, and services offered.
+- **Review Feedback**: 
+- View reviews submitted by customers.
+
+---
+
+### Admin
+*(Details for admin use cases can be added here.)*
+
+---
+
+Feel free to contribute or suggest improvements for the application. Happy gaming! 🎮
+
