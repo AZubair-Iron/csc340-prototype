@@ -79,6 +79,15 @@ public class ReviewController {
 
     @PostMapping("/submit")
     public String submitReview(@RequestParam int coachId, @RequestParam int user, @RequestParam double rating, @RequestParam String comment ) {
+
+        List<Review> reviewList = service.getReviewByCoachId(coachId);
+            for (Review review : reviewList) {
+                if (review.getUserId().getUserId() == user) {
+                    return "redirect:/coach/" + coachId;
+                }
+            }
+
+
         Review newReview = new Review();
 
         newReview.setCoachID(coachService.getCoachById(coachId));

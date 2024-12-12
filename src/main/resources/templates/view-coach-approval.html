@@ -37,24 +37,32 @@
   <tr>
     <th>User ID</th>
     <th>Student Name</th>
+    <th>Rank</th>
+    <th>Game</th>
+    <th>Year</th>
+    <th>Content</th>
     <th>Status</th>
     <th>Approve</th>
     <th>Decline</th>
   </tr>
   <tr data-th-each="user : ${approvalList}">
-    <td data-th-text="${user.userId}"></td>
-    <td data-th-text="${user.name}"></td>
-    <td data-th-text="${user.status}"></td>x`
+    <td data-th-text="${user.user_id}"></td>
+    <td data-th-text="${user.coach}"></td>
+    <td data-th-text="${user.rank}"></td>
+    <td data-th-text="${user.game.game}"></td>
+    <td data-th-text="${user.year}"></td>
+    <td data-th-text="${user.aplication}"></td>
+    <td data-th-text="${user.status}"></td>
     <td>
-      <form action="users/approve" method="post">
+      <form action="/coach/approve" method="post">
         <button type="submit">Approve</button>
-        <input type="hidden" id="submitId" name="userId" data-th-value="${user.userId}">
+        <input type="hidden" id="submitId" name="user_id" data-th-value="${user.user_id}">
       </form>
     </td>
     <td>
-      <form action="/users/decline" method="post">
+      <form action="/coach/decline" method="post">
         <button type="submit">Decline</button>
-        <input type="hidden" id="declineId" name="userId" data-th-value="${user.userId}">
+        <input type="hidden" id="declineId" name="user_id" data-th-value="${user.user_id}">
       </form>
     </td>
   </tr>

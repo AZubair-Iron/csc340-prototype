@@ -28,22 +28,27 @@ public class Application {
     @Column(nullable = false)
     private String aplication;
 
+    @Column(nullable = false)
+    private String status;
+
     public Application(int user_id, String coach, String rank, Game game,
-                        int year, String aplication) {
+                        int year, String aplication, String status) {
         this.user_id = user_id;
         this.coach = coach;
         this.rank = rank;
         this.game = game;
         this.year = year;
         this.aplication = aplication;
+        this.status = status;
     }
 
-    public Application(String coach, String rank, Game game, int year, String aplication) {
+    public Application(String coach, String rank, Game game, int year, String aplication, String status) {
         this.coach = coach;
         this.rank = rank;
         this.game = game;
         this.year = year;
         this.aplication = aplication;
+        this.status = status;
     }
 
     public Application(){}
@@ -94,5 +99,13 @@ public class Application {
 
     public void setAplication(String aplication) {
         this.aplication = aplication;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

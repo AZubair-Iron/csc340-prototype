@@ -2,6 +2,7 @@ package com.spartan.esports.teamMembers;
 
 import com.spartan.esports.team.Team;
 import com.spartan.esports.user.User;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 
@@ -14,15 +15,17 @@ public class Member {
     private int memberId;
 
     @ManyToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "team_id", nullable = false)
     private Team team;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(nullable = false)
     private String tag;
 
+    @Column(nullable = false)
     private String role;
 
     public Member(int memberId, Team team, User user, String tag, String role) {

@@ -37,4 +37,14 @@ public class UserService {
     public List<User> getUserByStatus(String status) { return userRepo.findByStatus(status); }
 
     public List<User> getAllUsers() { return userRepo.findAll(); }
+
+    public void updateUserStatus(Integer userId, String status) {
+        User user = userRepo.findById(userId).orElseThrow(() -> new IllegalArgumentException("Invalid user ID: " + userId));
+        user.setStatus(status);
+        userRepo.save(user);
+    }
+
+    public void deleteUserById(Integer userId) {
+        userRepo.deleteById(userId);
+    }
 }

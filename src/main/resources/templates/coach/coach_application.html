@@ -155,6 +155,7 @@
     <h1>Application for Coach</h1>
 
     <form action="/applications/new" method="post">
+
         <div class="form-group">
             <h3>Enter your name</h3>
             <input type="text" id="coach" name="coach" data-th-value="${application.coach}" placeholder="First Name Last Name" required />
@@ -201,6 +202,8 @@
             <h3>Why do you want to be a coach?</h3>
             <input type="text" id="aplication" name="aplication" placeholder="Enter your response here" required />
         </div>
+
+        <input type="hidden" id="status" name="status" data-th-value="PENDING">
 
         <button type="submit" class="btn-primary">Submit Application</button>
     </form>

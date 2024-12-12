@@ -2,6 +2,7 @@ package com.spartan.esports.team;
 
 
 import com.spartan.esports.games.Game;
+import com.spartan.esports.games.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,9 @@ import java.util.List;
 public class TeamController {
     @Autowired
     private TeamService service;
+
+    @Autowired
+    private GameService gameService;
 
     /**
      * Get a list of all Teams in the database.
@@ -72,17 +76,23 @@ public class TeamController {
     }
 
     @GetMapping("/createForm")
-    public String showNewTeamForm() {
+    public String showNewTeamForm(Model model) {
+        model.addAttribute("gameList", gameService.getAllGames());
+
         return "new-team-form";
     }
 
     @PostMapping("/add")
-    public String addTeam(@RequestParam String team, @RequestParam Game game) {
+    public String addTeam(@RequestParam String name, @RequestParam Game game, @RequestParam String matchday) {
         Team newTeam = new Team();
-        newTeam.setName(team);
+        newTeam.setName(name);
+
+        newTeam.setScoreline("0-0");
+        newTeam.setMatchDay(matchday);
         newTeam.setGame(game);
+
         service.addNewTeam(newTeam);
-        return "redirect:/teams/all"; // Redirect back to the teams list page after saving
+        return "redirect:/games/all"; // Redirect back to the teams list page after saving
     }
 
 

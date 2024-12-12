@@ -138,9 +138,9 @@ public class CoachController {
     }
 
     @PostMapping("/new")
-    public List<Coach> addNewCoach(@RequestBody Coach Coach){
+    public String addNewCoach(@RequestBody Coach Coach){
         service.addNewCoach(Coach);
-        return service.getAllCoaches();
+        return "/coach/all";
     }
 
     @GetMapping("/edit/{coachId}")

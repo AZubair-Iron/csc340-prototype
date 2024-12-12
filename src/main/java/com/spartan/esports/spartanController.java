@@ -1,14 +1,18 @@
 package com.spartan.esports;
 
 
+import com.spartan.esports.application.ApplicationService;
 import com.spartan.esports.coaches.CoachService;
 import com.spartan.esports.user.User;
 import com.spartan.esports.user.UserService;
+import com.spartan.esports.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -20,6 +24,9 @@ public class spartanController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ApplicationService applicationService;
 
     @GetMapping("/home")
     public String homePage() {
@@ -66,6 +73,17 @@ public class spartanController {
         return "view-coaches";
     }
 
+    @GetMapping("/admin/view/coach/approval")
+    public String adminApplications(Model model) {
+        List<Application> applicationList = applicationService.getAllApplications();
+
+        applicationList.removeIf(user -> !user.getStatus().equals("PENDING"));
+
+        model.addAttribute("approvalList", applicationList);
+
+        return "view-coach-approval";
+    }
+
     @GetMapping("/admin/teams/all")
     public String adminMembers() {
         return "view-teams";
@@ -83,5 +101,24 @@ public class spartanController {
 
     @GetMapping("/calendar/listc")
     public String getTheCalendar() {return "calendar";}
+
+    @PostMapping("/admin/view/users/approve")
+    public String approveUser(@RequestParam Integer userId) {
+        userService.updateUserStatus(userId, "Student");
+
+        return "redirect:/admin/view/members";
+    }
+
+    @PostMapping("/admin/view/users/decline")
+    public String declineUser(@RequestParam Integer userId) {
+        userService.deleteUserById(userId);
+
+        return "redirect:/admin/view/approval";
+    }
+
+    @GetMapping("/coaches/coachForm")
+    public String coachForm() {
+        return "new-coach";
+    }
 
 }

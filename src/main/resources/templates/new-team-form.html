@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,8 +38,16 @@
     Name:<input type="text" id="name" name="name" placeholder="Team Name">
     <br><br>
 
-    Game:<input type="text" id="game" name="game" placeholder="Game">
-    <br><br><br>
+      Match Day:<input type="text" id="matchday" name="matchday" placeholder="What day does this team play?">
+      <br><br>
+
+      <div class="form-group">
+          <h3>Select the game (Choose one)</h3>
+          <div th:if="${gameList != null and not #lists.isEmpty(gameList)}" th:each="game : ${gameList}">
+              <input type="radio" id="${game.gameId}" name="game" th:value="${game.gameId}" required />
+              <label for="${game.gameId}" th:text="${game.game}"></label>
+          </div>
+      </div>
 
     <button type="submit">Save New Team</button>
 
