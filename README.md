@@ -12,6 +12,18 @@ Welcome to the Spartan Esports Application!
 
 ---
 
+## Login 
+
+Admin:
+
+User: akzubair@uncg.edu 
+Pass: 123456
+
+Player:
+
+User: cnt@uncg.edu
+Pass: 123456
+
 ## Use Cases
 
 ### Customer
