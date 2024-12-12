@@ -24,6 +24,11 @@ Player:
 User: cnt@uncg.edu
 Pass: 123456
 
+Student:
+
+User: sample@email.com
+Pass: 123456
+
 ## Use Cases
 
 ### Customer
