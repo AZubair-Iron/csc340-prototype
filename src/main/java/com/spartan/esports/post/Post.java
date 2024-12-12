@@ -1,40 +1,57 @@
 package com.spartan.esports.post;
 
-import com.spartan.esports.user.User;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 @Entity
-@Table(name = "posts")
+@Table(name = "post_table")
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int postId;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User creator;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     @Column(nullable = false)
     private String title;
+    private String description;
 
-    @Column(nullable = false)
-    private String content;
-
-    private LocalDateTime createdAt;
-/*
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments;
-
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Like> likes;
-*/
     public Post() {
-        this.createdAt = LocalDateTime.now();
     }
 
+    public Post(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" data-th-href="@{/css/comments.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="head"><h1>Post a Comment</h1></div>
+    <div><span id="comment">0</span> Comments</div>
+    <div class="text"><p>Comment Below</p></div>
+    <div class="comments"></div>
+    <div class="commentbox">
+      <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+      <div class="content">
+        <h2>Comment as: </h2>
+        <input type="text" value="Anonymous" class="user">
+
+        <div class="commentinput">
+          <input type="text" placeholder="Enter Comment" class="usercomment">
+          <div class="buttons">
+            <form method="post" action="/posts/all">
+              <button type="submit" id="publish">Publish</button>
+            </form>
+            <div class="notify">
+              <input type="checkbox" class="notifyinput"> <span>Notify me</span>
+            </div>
+          </div>
+        </div>
+        <p class="policy">This post is protected by SpartanEsports and UNCG <a data-th-href="@{/comments/privacy}">privacy policy</a> and <a data-th-href="@{/comments/services}">Terms of Services</a> apply. </p>
+      </div>
+    </div>
+  </div>
+
+  <!--<script>
+
+    "use strict";
+
+    const userId = {
+      name: null,
+      identity: null,
+      image: null,
+      message: null,
+      date: null
+    }
+
+    const userComment = document.querySelector(".usercomment");
+    const publishBtn = document.querySelector("#publish");
+    const comments = document.querySelector(".comments");
+    const userName = document.querySelector(".user");
+
+    userComment.addEventListener("input", e => {
+      if(!userComment.value) {
+        publishBtn.setAttribute("disabled", "disabled");
+        publishBtn.classList.remove("abled")
+      } else {
+        publishBtn.removeAttribute("disabled");
+        publishBtn.classList.add("abled")
+      }
+    })
+
+    function addPost() {
+    console.log("The button works!")
+      if(!userComment.value) return;
+      userId.name = userName.value;
+      if(userId.name == "Anonymous") {
+        userId.identity = false;
+      } else {
+        userId.identity = true;
+      }
+
+      userId.message = userComment.value;
+      userId.date = new Date().toLocaleString();
+      let published =
+      `<div class="parents">
+        <img src="${userId.image}">
+        <div>
+          <h1>${userId.name}</h1>
+          <p>${userId.message}</p>
+          <div class="engagements"><img src=""><img src=""></div>
+          <span class="date">${userId.date}</span>
+        </div>
+       </div>;
+
+       comments.innerHTML += published;
+       userComment.value = "";
+
+       let commentsNum = document.querySelectorAll(".parents").length;
+       document.getElementById("comment").textContent = commentsNum;
+    }
+
+    publishBtn.addEventListener("click", addPost)
+
+  </script>-->
+
+</body>
+</html>
