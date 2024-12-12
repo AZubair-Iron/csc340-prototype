@@ -32,8 +32,8 @@
 
     <h1>Manage Team Members</h1>
 
-<a data-th-href="@{/teams/createForm}">
-    <button>Make New Team</button>
+<a data-th-href="@{/members/newMemberForm}">
+    <button>Make New Member</button>
 </a>
 
     <table class="center" style="width:50%">
@@ -48,6 +48,7 @@
             <td data-th-text="${member.role}"></td>
             <td data-th-text="${member.team.name}"></td>
             <td>
+                <a data-th-href="@{/members/update/{id} (id=${member.memberId})}"><button>Update</button></a>
                 <a data-th-href="@{/members/delete/{id} (id=${member.memberId})}"><button>Remove</button></a>
             </td>
         </tr>

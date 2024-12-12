@@ -119,7 +119,10 @@ public class MemberController {
         return "redirect:/members/all"; // Redirect back to the members list page after saving
     }
 
-
+    @GetMapping("/newMemberForm")
+    public String showNewMemberForm() {
+        return "new-member";
+    }
 
     /**
      * Update an existing Member object.getMembersByHabitat
@@ -134,6 +137,13 @@ public class MemberController {
         model.addAttribute("member", service.getMemberById(memberId));
         return "/games/memberUpdate";
     }
+
+    @GetMapping("/update/u/{memberId}")
+    public String updateMemberForm(@PathVariable int memberId, Model model) {
+        model.addAttribute("member", service.getMemberById(memberId));
+        return "member-update";
+    }
+
 
     @PostMapping("/update/finish/{memberId}")
     public String updateMember(@PathVariable int memberId, Member member) {
