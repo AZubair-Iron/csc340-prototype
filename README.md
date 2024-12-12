@@ -32,10 +32,11 @@ Welcome to the Spartan Esports Application!
 ---
 
 ### Admin
-*(Details for admin use cases can be added here.)*
--View/Manage/Edit Teams
--Create events for the events list
--View/Edit/Create/Remove Ban Reports
+- View/Manage/Edit Teams
+- Create events for the events list
+- View/Edit/Create/Remove Ban Reports
+
+- *(Details for admin use cases can be added here.)*
 
 ---
 
