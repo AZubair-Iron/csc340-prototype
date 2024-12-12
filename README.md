@@ -3,7 +3,7 @@
 Welcome to the Spartan Esports Application!
 ---
 
-## 🚀 How to Launch
+## How to Launch
 
 1. Open **XAMPP** and start:
    - **Apache**
@@ -25,7 +25,7 @@ Welcome to the Spartan Esports Application!
 - Add available times to their schedule.
 - Remove available times.
 - **Profile Management**: 
-- Edit personal profiles, including games, rank, and services offered.
+- Edit your personal profiles, including games, rank, and services offered.
 - **Review Feedback**: 
 - View reviews submitted by customers.
 
@@ -37,6 +37,10 @@ Welcome to the Spartan Esports Application!
 - View/Edit/Create/Remove Ban Reports
 
 - *(Details for admin use cases can be added here.)*
+
+### Third Party API
+
+SteamAPI is our third party API, where we can find the different stats for games, such as Player Count, Game type, and Price. 
 
 ---
 
