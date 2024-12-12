@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/stylehome.css">
+    <link rel="stylesheet" href="/css/navbar.css" data-th-href="@{/css/navbar.css}">
+    <link rel="stylesheet" href="/css/stylehome.css" data-th-href="@{/css/stylehome.css}">
     <title>Admin Settings | Spartan Esports</title>
-    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
+    <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg" data-th-href="@{images/uncg-esports-dr-sh-800.jpg}">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
     <a data-th-href="@{/games/all}">View Teams</a>
     <a data-th-href="@{/coach/all}">Coaches</a>
     <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
-    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/users/login}"> Login </a>
     <a data-th-href="@{/profile/user}">Profile</a>
 </div>
 
@@ -31,26 +31,26 @@
     <div class="grid-container">
 
         <div class="grid-item">
-            <a data-th-href="@{/admin/teams/all}"> <img src="@{images/team-28-256.png}" alt="View Teams" width="100">
+            <a data-th-href="@{/admin/teams/all}"> <img src="#" data-th-src="@{/images/team-28-256.png}" alt="View Teams" width="100">
             <h3>View Teams</h3>
             </a>
         </div>
         <div class="grid-item">
             <a data-th-href="@{/admin/coaches/all}">
-                <img src="@{images/coach-instructor-icon.png}" alt="View Coaches" width="100">
+                <img src="#" data-th-src="@{/images/coach-instructor-icon.png}" alt="View Coaches" width="100">
                 <h3>View Coaches</h3>
             </a>
         </div>
         <div class="grid-item">
             <a data-th-href="@{/members/list}">
-                <img src="@{images/Edit_icon_(the_Noun_Project_30184).png}" alt="Edit Teams" width="100">
+                <img src="#" data-th-src="@{/images/Edit_icon_(the_Noun_Project_30184).png}" alt="Edit Teams" width="100">
                 <h3>Manage/Edit Team</h3>
             </a>
         </div>
 
         <div class="grid-item">
             <a data-th-href="@{/banlist/all}">
-                <img src="@{images/ban-circle.512x512.png}" alt="Ban Reports" width="100">
+                <img src="#" data-th-src="@{/images/ban-circle.512x512.png}" alt="Ban Reports" width="100">
                 <h3>Ban Reports</h3>
             </a>
         </div>
@@ -58,8 +58,22 @@
 
         <div class="grid-item">
             <a data-th-href="@{/calendar/calendarForm}">
-                <img src="@{images/add-calendar-512.png}" alt="Create Event" width="100">
+                <img src="#" data-th-src="@{/images/add-calendar-512.png}" alt="Create Event" width="100">
                 <h3>Create Event</h3>
+            </a>
+        </div>
+
+        <div class="grid-item">
+            <a data-th-href="@{/admin/view/members}">
+                <img src="#" data-th-src="@{/images/profile.jpg}" alt="View Students" width="100">
+                <h3>View Students</h3>
+            </a>
+        </div>
+
+        <div class="grid-item">
+            <a data-th-href="@{/admin/view/approval}">
+                <img src="#" data-th-src="@{/images/profile.jpg}" alt="View Students" width="100">
+                <h3>View Approvals</h3>
             </a>
         </div>
     </div>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/stylehome.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <title>View Students | Spartan Esports</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/stylehome.css">
+    <title>View Coaches</title>
     <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
 </head>
 <body>
@@ -13,33 +13,42 @@
 <div class="topnav">
     <a data-th-href="@{/home}">Home</a>
     <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/calendar/listc}"></a>
     <a data-th-href="@{/discussion/home}">Discussion</a>
     <a data-th-href="@{/games/all}">View Teams</a>
     <a data-th-href="@{/coach/all}">Coaches</a>
     <a class="active" data-th-href="@{/admin/all}">Admin Settings</a>
-    <a data-th-href="@{/login}"> Login </a>
+    <a data-th-href="@{/users/login}"> Login </a>
     <a data-th-href="@{/profile/user}">Profile</a>
 </div>
 
-    <a data-th-href="@{/admin/all}" class="return">
-        <span>Return</span>
-    </a>
+<a data-th-href="@{/admin/all}" class="return">
+    <span>Return</span>
+</a>
 
-    <br>
-    <br>
-    <br>
+<br>
+<br>
+<br>
 
-    <h1>View Students</h1>
+<h1>View Student</h1>
 
-    <table class="center" style="width:50%">
-        <tr>
-            <th></th>
-            <th>View Profile</th>
-        </tr>
-        <tr>
-            <td>Student1</td>
-            <td><a href="#">Profile</a></td>
-    </table>
-    
+
+<table class="center" style="width:50%">
+    <tr>
+        <th>User ID</th>
+        <th>Student Name</th>
+        <th>Status</th>
+        <th>Edit/Remove</th>
+    </tr>
+    <tr data-th-each="user : ${studentList}">
+        <td data-th-text="${user.userId}"></td>
+        <td data-th-text="${user.name}"></td>
+        <td data-th-text="${user.status}"></td>
+        <td>
+            <a data-th-href="@{/user/update/{id} (id=${user.userId})}"><button>Edit</button></a>
+            <a data-th-href="@{/user/delete/{id} (id=${user.userId})}"><button>Remove</button></a>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

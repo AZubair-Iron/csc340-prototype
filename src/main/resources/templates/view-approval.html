@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="stylesheet" href="/css/stylehome.css">
-  <title>Coach Details</title>
+  <title>View Coaches</title>
   <link rel="icon" href="images/uncg-esports-dr-sh-800.jpg">
 </head>
 <body>
@@ -13,6 +13,7 @@
 <div class="topnav">
   <a data-th-href="@{/home}">Home</a>
   <a data-th-href="@{/calendar/list}">Events</a>
+  <a data-th-href="@{/calendar/listc}"></a>
   <a data-th-href="@{/discussion/home}">Discussion</a>
   <a data-th-href="@{/games/all}">View Teams</a>
   <a data-th-href="@{/coach/all}">Coaches</a>
@@ -29,27 +30,24 @@
 <br>
 <br>
 
-<h1>Coach Details</h1>
+<h1>View Student</h1>
 
 
 <table class="center" style="width:50%">
   <tr>
-    <th>Coach ID</th>
-    <th>Coach Name</th>
-    <th>Game</th>
-    <th>Rank</th>
-    <th>Rating</th>
-    <th>View Profile</th>
+    <th>User ID</th>
+    <th>Student Name</th>
+    <th>Status</th>
   </tr>
-  <tr data-th-each="coach : ${coachList}">
-    <td data-th-text="${coach.coachId}"></td>
-    <td data-th-text="${coach.name}"></td>
-    <td data-th-text="${coach.game}"></td>
-    <td data-th-text="${coach.rank}"></td>
-    <td data-th-text="${coach.rating}"></td>
-    <td><a href="#">View Coach</a></td>
+  <tr data-th-each="user : ${approvalList}">
+    <td data-th-text="${user.userId}"></td>
+    <td data-th-text="${user.name}"></td>
+    <td data-th-text="${user.status}"></td>x`
+    <td>
+      <a data-th-href="@{/user/update/{id} (id=${user.userId})}"><button>Approve</button></a>
+      <a data-th-href="@{/user/delete/{id} (id=${user.userId})}"><button>Decline</button></a>
+    </td>
   </tr>
 </table>
-
 </body>
 </html>

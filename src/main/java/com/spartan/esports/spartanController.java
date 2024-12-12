@@ -2,16 +2,24 @@ package com.spartan.esports;
 
 
 import com.spartan.esports.coaches.CoachService;
+import com.spartan.esports.user.User;
+import com.spartan.esports.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class spartanController {
 
     @Autowired
     private CoachService coachService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/home")
     public String homePage() {
@@ -29,9 +37,26 @@ public class spartanController {
         return "adminsettingspass";
     }
 
-    @GetMapping("/admin/students")
-    public String adminStudents() {
+    @GetMapping("/admin/view/members")
+    public String adminStudents(Model model) {
+        List<User> userList = userService.getAllUsers();
+
+        userList.removeIf(user -> !user.getStatus().equals("Student"));
+
+        model.addAttribute("studentList", userList);
+
         return "view-students";
+    }
+
+    @GetMapping("/admin/view/approval")
+    public String adminApproval(Model model) {
+        List<User> userList = userService.getAllUsers();
+
+        userList.removeIf(user -> !user.getStatus().equals("PENDING"));
+
+        model.addAttribute("approvalList", userList);
+
+        return "view-approval";
     }
 
     @GetMapping("/admin/coaches/all")
@@ -49,11 +74,6 @@ public class spartanController {
     @GetMapping("/admin/postList/remove")
     public String adminPost() {
         return "view-post";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
     }
 
     @GetMapping("/profile/user")

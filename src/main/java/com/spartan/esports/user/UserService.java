@@ -3,6 +3,8 @@ package com.spartan.esports.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -21,6 +23,7 @@ public class UserService {
             user.setName(name);
             user.setEmail(email);
             user.setPassword(password);
+            user.setStatus("PENDING");
             return userRepo.save(user);
         }
     }
@@ -30,4 +33,8 @@ public class UserService {
     }
 
     public User getUserById(int userId){ return userRepo.findById(userId).orElse(null); }
+
+    public List<User> getUserByStatus(String status) { return userRepo.findByStatus(status); }
+
+    public List<User> getAllUsers() { return userRepo.findAll(); }
 }

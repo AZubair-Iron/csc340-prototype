@@ -21,21 +21,28 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String status;
+
     public User() {
     }
 
-    public User(Integer userId, String name, String email, String password) {
+    public User(Integer userId, String name, String email, String password, String status) {
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.status = status;
     }
 
-    public User(String name, String email, String password) {
+    public User(String name, String email, String password, String status) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.status = status;
     }
+
+
 
     /*
     @Enumerated(EnumType.STRING)
@@ -85,6 +92,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /*
