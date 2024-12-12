@@ -12,6 +12,7 @@
 <div class="topnav">
   <a data-th-href="@{/home}">Home</a>
   <a data-th-href="@{/calendar/list}">Events</a>
+  <a data-th-href="@{/calendar/listc}">Calendar</a>
   <a data-th-href="@{/posts/all}">Discussion</a>
   <a data-th-href="@{/games/all}">View Teams</a>
   <a data-th-href="@{/coach/all}">Coaches</a>
@@ -30,7 +31,7 @@
 <br>
 
 <div class="Section1">
-  <form action="/coaches/new" method="post">
+  <form action="/coach/new" method="post">
 
     <label>Coach Name: </label>
     <input type="text" id="name" name="name" placeholder="Coach Name"/>
@@ -41,7 +42,7 @@
     <br><br>
 
     <label>Coach Rating: </label>
-    <input type="text" id="rating" name="rating" placeholder="5.0"/>
+    <input type="number" id="rating" name="rating" placeholder="5.0"/>
     <br><br>
 
     <label>Coach Game: </label>
