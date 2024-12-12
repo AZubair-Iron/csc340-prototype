@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2024 at 05:07 PM
+-- Generation Time: Dec 12, 2024 at 05:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -74,6 +74,14 @@ CREATE TABLE `banned_list` (
   `user_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `banned_list`
+--
+
+INSERT INTO `banned_list` (`user_id`, `offense`, `status`, `user_name`) VALUES
+(123, 'wall hacks', 'Banned', 'W@llHackboi88'),
+(789, 'offensive language', 'Not Banned', 'Mr.Soup');
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +113,15 @@ CREATE TABLE `calendar` (
   `name` varchar(255) NOT NULL,
   `participating` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `calendar`
+--
+
+INSERT INTO `calendar` (`eventid`, `attending`, `date`, `location`, `name`, `participating`) VALUES
+(66, '40', '12/12/24', 'EUC', 'Valorant event', '15'),
+(88, '50', '12/15/24', 'EUC', 'Overwatch event', '12'),
+(120, '50', '12/20/24', 'Greensboro Complex', 'Apex event', '10');
 
 -- --------------------------------------------------------
 
@@ -258,6 +275,14 @@ CREATE TABLE `reports` (
   `recount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`id`, `name`, `offense`, `recount`) VALUES
+(88, 'Chea T. Er', 'wallhacks', 50),
+(420, 'SomeChe@t1ngB01', 'offensive language, wall hacks', 69);
+
 -- --------------------------------------------------------
 
 --
@@ -328,6 +353,14 @@ CREATE TABLE `schedules` (
   `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`schedule_id`, `date`, `end_time`, `start_time`, `coach_id`, `user_id`) VALUES
+(1, '2024-12-12', '15:00:00.000000', '14:00:00.000000', 100, 2),
+(2, '2024-12-12', '14:00:00.000000', '13:00:00.000000', 100, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -343,7 +376,7 @@ CREATE TABLE `schedules_seq` (
 --
 
 INSERT INTO `schedules_seq` (`next_val`) VALUES
-(1);
+(101);
 
 -- --------------------------------------------------------
 
@@ -411,7 +444,8 @@ INSERT INTO `users` (`user_id`, `email`, `name`, `password`, `status`) VALUES
 (6, 'ag@uncg.edu', 'Andrew Garfield', '123456', 'Player'),
 (7, 'simple@uncg.edu', 'Simmions', '123456', 'Coach'),
 (8, 'Ja@uncg.edu', 'Jacob', '123456', 'Player'),
-(9, 'da@uncg.edu', 'Dakota', '123456', 'Player');
+(9, 'da@uncg.edu', 'Dakota', '123456', 'Player'),
+(100, 'sample@email.com', 'S@mpleB01', '123456', 'Student');
 
 --
 -- Indexes for dumped tables
@@ -519,7 +553,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- Constraints for dumped tables
