@@ -28,6 +28,4 @@ public class UserService {
     public User authenticate(String email, String password) {
         return userRepo.findByEmailAndPassword(email, password).orElse(null);
     }
-
-    public User getUserById(int userId){ return userRepo.findById(userId).orElse(null); }
 }

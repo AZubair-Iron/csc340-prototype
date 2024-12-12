@@ -24,6 +24,16 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/confirm")
+    public String confirmPage() {
+        return "confirm";
+    }
+
+    @GetMapping("/profile")
+    public String profilePage() {
+        return "profile";
+    }
+
     @PostMapping("/signup")
     public String signup(@ModelAttribute User user) {
         System.out.println("register request: " + user);
