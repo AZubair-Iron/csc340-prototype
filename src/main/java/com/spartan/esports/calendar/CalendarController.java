@@ -43,6 +43,11 @@ public class CalendarController {
         return "redirect:/calendar/all";
     }
 
+    @GetMapping("/list")
+    public String showCalendarList(Model model) {
+        model.addAttribute("eventList", calendarService.getAllCalendar());
+        return "event-list-user";
+    }
 
     @GetMapping("/update/{eventID}")
     public String updateCalendarForm(@PathVariable int eventID, Model model) {
