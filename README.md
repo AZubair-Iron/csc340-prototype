@@ -8,7 +8,7 @@ Welcome to the Spartan Esports Application!
 1. Open **XAMPP** and start:
    - **Apache**
    - **MySQL**
-2. Navigate to the project directory and launch the application by running:
+2. Navigate to the project directory and launch the application by running: src/main/java/com/spartan/esports/SpartanEsportsApplication.java
 
 ---
 
