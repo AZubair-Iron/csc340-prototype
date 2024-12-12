@@ -46,7 +46,7 @@ public class CalendarController {
     @GetMapping("/list")
     public String showCalendarList(Model model) {
         model.addAttribute("eventList", calendarService.getAllCalendar());
-        return "event-list-user";
+        return "events-list-user";
     }
 
     @GetMapping("/update/{eventID}")

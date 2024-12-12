@@ -13,7 +13,7 @@
 <div class="topnav">
     <a data-th-href="@{/home}">Home</a>
     <a data-th-href="@{/calendar/list}">Events</a>
-    <a data-th-href="@{/calendar/listc}"></a>
+    <a data-th-href="@{/calendar/listc}">Calendar</a>
     <a data-th-href="@{/discussion/home}">Discussion</a>
     <a data-th-href="@{/games/all}">View Teams</a>
     <a data-th-href="@{/coach/all}">Coaches</a>
@@ -30,11 +30,11 @@
     <br>
     <br>
 
-<a data-th-href="@{/teams/createForm}">
-    <span>Make New Team</span>
-</a>
+    <h1>Manage Team Members</h1>
 
-    <h1>Manage Team</h1>
+<a data-th-href="@{/members/newMemberForm}">
+    <button>Make New Member</button>
+</a>
 
     <table class="center" style="width:50%">
         <tr>
@@ -48,6 +48,7 @@
             <td data-th-text="${member.role}"></td>
             <td data-th-text="${member.team.name}"></td>
             <td>
+                <a data-th-href="@{/members/update/{id} (id=${member.memberId})}"><button>Update</button></a>
                 <a data-th-href="@{/members/delete/{id} (id=${member.memberId})}"><button>Remove</button></a>
             </td>
         </tr>

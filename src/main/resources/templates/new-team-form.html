@@ -13,6 +13,7 @@
 <div class="topnav">
     <a data-th-href="@{/home}">Home</a>
     <a data-th-href="@{/calendar/list}">Events</a>
+    <a data-th-href="@{/calendar/listc}">Calendar</a>
     <a data-th-href="@{/discussion/home}">Discussion</a>
     <a data-th-href="@{/games/all}">View Teams</a>
     <a data-th-href="@{/coach/all}">Coaches</a>
@@ -33,7 +34,7 @@
 <br><br>
 
 <div class="Section1">
-  <form action="/teams/new" method="post">
+  <form action="/teams/add" method="post">
     Name:<input type="text" id="name" name="name" placeholder="Team Name">
     <br><br>
 

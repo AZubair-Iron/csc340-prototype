@@ -13,7 +13,7 @@
 <div class="topnav">
     <a data-th-href="@{/home}">Home</a>
     <a data-th-href="@{/calendar/list}">Events</a>
-    <a data-th-href="@{/calendar/listc}"></a>
+    <a data-th-href="@{/calendar/listc}">Calendar</a>
     <a data-th-href="@{/discussion/home}">Discussion</a>
     <a data-th-href="@{/games/all}">View Teams</a>
     <a data-th-href="@{/coach/all}">Coaches</a>
@@ -29,10 +29,7 @@
     <h1>Admin Settings</h1>
 
     <div class="grid-container">
-        <div class="grid-item">
-            <a data-th-href="@{/admin/students}"><img src="@{images/admin-with-cogwheels.png}" alt="View Students" width="100">
-            <h3>View Students</h3></a>
-        </div>
+
         <div class="grid-item">
             <a data-th-href="@{/admin/teams/all}"> <img src="@{images/team-28-256.png}" alt="View Teams" width="100">
             <h3>View Teams</h3>
@@ -50,12 +47,7 @@
                 <h3>Manage/Edit Team</h3>
             </a>
         </div>
-        <div class="grid-item">
-            <a href="approve-new-member.html">
-                <img src="@{images/create-account-icon.png}" alt="Approve New Accounts/Team Members" width="100">
-                <h3>Approve New Accounts/ <br>Team Members</h3>
-            </a>
-        </div>
+
         <div class="grid-item">
             <a data-th-href="@{/banlist/all}">
                 <img src="@{images/ban-circle.512x512.png}" alt="Ban Reports" width="100">
@@ -63,12 +55,7 @@
             </a>
         </div>
         
-        <div class="grid-item">
-            <a data-th-href="@{postList/remove}">
-                <img src="@{images/removepost.png}" alt="Remove Post" width="100">
-                <h3>Remove Posts</h3>
-            </a>
-        </div>
+
         <div class="grid-item">
             <a data-th-href="@{/calendar/calendarForm}">
                 <img src="@{images/add-calendar-512.png}" alt="Create Event" width="100">
