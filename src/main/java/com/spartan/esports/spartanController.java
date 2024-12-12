@@ -53,4 +53,7 @@ public class spartanController {
         return "profile"; // Replace with the actual view name for the user profile page
     }
 
+    @GetMapping("/calendar/listc")
+    public String getTheCalendar() {return "calendar";}
+
 }
