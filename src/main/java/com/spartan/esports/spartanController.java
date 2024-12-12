@@ -3,6 +3,8 @@ package com.spartan.esports;
 
 import com.spartan.esports.application.ApplicationService;
 import com.spartan.esports.coaches.CoachService;
+import com.spartan.esports.team.TeamService;
+import com.spartan.esports.teamMembers.MemberService;
 import com.spartan.esports.user.User;
 import com.spartan.esports.user.UserService;
 import com.spartan.esports.application.Application;
@@ -27,6 +29,12 @@ public class spartanController {
 
     @Autowired
     private ApplicationService applicationService;
+
+    @Autowired
+    private MemberService memberService;
+
+    @Autowired
+    private TeamService teamService;
 
     @GetMapping("/home")
     public String homePage() {
@@ -85,7 +93,10 @@ public class spartanController {
     }
 
     @GetMapping("/admin/teams/all")
-    public String adminMembers() {
+    public String adminMembers(Model model) {
+
+        model.addAttribute("teamList", teamService.getAllTeams());
+
         return "view-teams";
     }
 
@@ -119,6 +130,16 @@ public class spartanController {
     @GetMapping("/coaches/coachForm")
     public String coachForm() {
         return "new-coach";
+    }
+
+    @GetMapping("/test/list")
+    public String memberList(Model model) {
+
+
+        model.addAttribute("studentList", memberService.getAllMembers());
+
+        return "view-students";
+
     }
 
 }

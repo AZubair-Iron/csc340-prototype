@@ -43,8 +43,8 @@
         </tr>
         <tr data-th-each="team : ${teamList}">
             <td data-th-text="${team.name}"></td>
-            <td data-th-text="${team.game}"></td>
-            <td><a href="@{/teams/{id} (id=${team.teamId})}"><button>View Team</button></a></td>
+            <td data-th-text="${team.game.game}"></td>
+            <td><a data-th-href="@{/members/{id} (id=${team.teamId})}"><button>View Team</button></a></td>
         </tr>
     </table>
 

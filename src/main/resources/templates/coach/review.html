@@ -168,10 +168,10 @@
       <form action="/reviews/submit" method="post">
         <input type="hidden" id="coachId" name="coachId" th:value="${coach.coachId}" />
 
-        <input type="hidden" id="user" name="user" th:value="100" />
+        <input type="hidden" id="user" name="user" th:value="${coach.userId.userId}" />
 
         <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" th:value="${coach. userId.name}" placeholder="Enter your name" readonly>
+        <input type="text" id="name" name="name" th:value="${coach.userId.name}" placeholder="Enter your name" readonly>
 
         <label for="rating">Rating:</label>
         <select id="rating" name="rating" required>
