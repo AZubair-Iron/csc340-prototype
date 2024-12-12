@@ -37,7 +37,7 @@
 		.back-button {
 			padding: 10px 15px;
 			font-size: 16px;
-			margin: 20px;
+			margin-bottom: 20px;
 			cursor: pointer;
 			background-color: #007BFF;
 			color: white;
@@ -53,7 +53,6 @@
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
           }
-
         .topnav {
             position: absolute;
             top: 0;
@@ -106,24 +105,3 @@
             background-color: #04AA6D;
             color: white;
           }
-
-           .return-button {
-                      background-color: #f5f5f5;
-                      border: 1px solid #ccc;
-                      border-radius: 8px;
-                      width: 125px;
-                      height: 50px;
-                      cursor: pointer;
-                      font-size: 14px;
-                      color: #333;
-                      transition: transform 0.3s ease, background-color 0.3s ease;
-                  }
-
-                  .return-button:hover {
-                      background-color: #eaeaea;
-                      transform: scale(1.05);
-                  }
-
-                  .return-button:active {
-                      transform: scale(0.95);
-                  }
