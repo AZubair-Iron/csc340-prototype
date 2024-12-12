@@ -1,14 +1,20 @@
 package com.spartan.esports;
 
 
+import com.spartan.esports.coaches.CoachService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class spartanController {
 
+    @Autowired
+    private CoachService coachService;
+
     @GetMapping("/home")
-    public String home() {
+    public String homePage() {
         return "homepage";
     }
 
@@ -29,7 +35,9 @@ public class spartanController {
     }
 
     @GetMapping("/admin/coaches/all")
-    public String adminCoaches() {
+    public String adminCoaches(Model model) {
+        model.addAttribute("coachList", coachService.getAllCoaches());
+
         return "view-coaches";
     }
 

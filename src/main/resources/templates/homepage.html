@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/navbar.css">
     <link rel="stylesheet" href="../static/css/stylehome.css">
     <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="../../static/css/navbar.css" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" href="../../static/css/stylehome.css" th:href="@{/css/stylehome.css}">
+    <link rel="stylesheet" href="../../static/css/login.css" th:href="@{/css/login.css}">
+    <link rel="stylesheet" href="../../static/css/global.css" th:href="@{/css/global.css}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet">
     <title>Home | Spartan Esports</title>
-    <link rel="icon" href="../static/images/uncg-esports-dr-sh-800.jpg">
+    <link rel="icon" href="../static/images/uncg-esports-dr-sh-800.jpg" th:href="@{/images/uncg-esports-dr-sh-800.jpg}">
 </head>
 <body>
 <div class="topnav">
@@ -35,7 +39,7 @@
     </h2>
 
     <div class="Section1">
-        <a href="login.html"><img src="../static/images/login.png" alt="Log in Icon" width="300"></a>
+        <a href="@{/login}"><img src="${images/login.png}" alt="Log in Icon" width="300"></a>
         <h3>Do you have an account? <br>
         Login/Sign up here.</h3>
     </div>
@@ -47,7 +51,7 @@
     </div>
 
     <div class="Section1">
-        <a data-th-href="@/calendar/listc"><img src="../static/images/678116-calendar-512.jpg" alt="Calendar picture" width="300"></a>
+        <a data-th-href="@{/calendar/list}"><img src="../static/images/678116-calendar-512.jpg" alt="Calendar picture" width="300"></a>
         <h3>Mark an event on your Calendar. <br>
         You can mark a date on the calendar for events you are interested in.</h3>
     </div>

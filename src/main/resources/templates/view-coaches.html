@@ -45,14 +45,14 @@
         </tr>
         <tr data-th-each="coach : ${coachList}">
             <td data-th-text="${coach.coachId}"></td>
-            <td data-th-text="${coach.name}"></td>
+            <td data-th-text="${coach.userId.name}"></td>
             <td data-th-text="${coach.game}"></td>
             <td data-th-text="${coach.rank}"></td>
             <td data-th-text="${coach.rating}"></td>
-            <td><a href="#"><button>View Coach</button></a></td>
+            <td><a data-th-href="@{/coach/{id}(id=${coach.coachId})}"><button>View Coach</button></a></td>
             <td>
-                <a data-th-href="@{/coaches/update/{id} (id=${coach.coachId})}"><button>Edit</button></a>
-                <a data-th-href="@{/coaches/delete/{id} (id=${coach.coachId})}"><button>Remove</button></a>
+                <a data-th-href="@{/coach/update/{id} (id=${coach.coachId})}"><button>Edit</button></a>
+                <a data-th-href="@{/coach/delete/{id} (id=${coach.coachId})}"><button>Remove</button></a>
             </td>
         </tr>
     </table>
