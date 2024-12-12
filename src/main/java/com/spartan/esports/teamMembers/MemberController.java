@@ -35,6 +35,12 @@ public class MemberController {
         return "/games/teamMembers";
     }
 
+    @GetMapping("/list")
+    public String getMembersAdmin(Model model) {
+        model.addAttribute("memberList", service.getAllMembers());
+        return "manage-edit-team";
+    }
+
 
     /**
      * Get a specific Member by Id.

@@ -22,14 +22,15 @@
   </head>
   <body>
     <div class="sidenav">
-        <a href="../templates/homepage.html">Home</a>
-        <a class="active" href="calendar.html">Events</a>
-        <a href="discussion_hub.html">Discussion</a>
-        <a href="teams.html">View Teams</a>
-        <a href="coach_hub.html">Coaches</a>
-        <a href="adminsettings.html">Admin Settings</a>
-        <a href="../templates/login.html"> Login </a>
-        <a href="../templates/profile.html">Profile</a>
+      <a  data-th-href="@{/home}">Home</a>
+      <a data-th-href="@{/calendar/list}">Events</a>
+      <a data-th-href="@{/calendar/listc}"></a>
+      <a data-th-href="@{/discussion/home}">Discussion</a>
+      <a class="active" data-th-href="@{/games/all}">View Teams</a>
+      <a data-th-href="@{/coach/all}">Coaches</a>
+      <a data-th-href="@{/admin/all}">Admin Settings</a>
+      <a data-th-href="@{/login}"> Login </a>
+      <a data-th-href="@{/profile/user}">Profile</a>
     </div>
     <div class="container">
       <div class="left">
