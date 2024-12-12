@@ -9,6 +9,10 @@ public class UserService {
     @Autowired
     UserRepository userRepo;
 
+    public User getUserById(int userId) {
+        return userRepo.findById(userId).orElse(null);
+    }
+
     public User registerUser(String name, String email, String password){
         if (email == null || password == null) {
             return null;
