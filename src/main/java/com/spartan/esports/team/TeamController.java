@@ -71,6 +71,11 @@ public class TeamController {
         return "redirect:/teams/all";
     }
 
+    @GetMapping("/createForm")
+    public String showNewTeamForm() {
+        return "new-team-form";
+    }
+
     @PostMapping("/add")
     public String addTeam(@RequestParam String team, @RequestParam Game game) {
         Team newTeam = new Team();
