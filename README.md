@@ -44,5 +44,3 @@ SteamAPI is our third party API, where we can find the different stats for games
 
 ---
 
-Feel free to contribute or suggest improvements for the application. Happy gaming! 🎮
-
